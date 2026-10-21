@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2926001492942691"
-     crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>𝗶𝘁𝘇𝗺𝗿𝗼𝗹𝗮𝘀</title>
+<title>itzmrolas</title>
 
 <!-- Website Icon (Favicon) -->
 <link rel="icon" type="image/png" href="favicon.png">
 
-<!-- Fonts -->
+<!-- Apple System Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --bg-dark: #050507;
-    --red-primary: #ff1a40;
-    --red-hover: #ff3355;
-    --red-glow: rgba(255, 26, 64, 0.4);
-    --card-bg: rgba(18, 10, 15, 0.55);
-    --card-border: rgba(255, 26, 64, 0.25);
-    --text-color: #ffffff;
-    --text-muted: #a0a0a8;
+    --bg-dark: #000000;
+    --bg-gradient: radial-gradient(circle at 50% 20%, #161618 0%, #000000 80%);
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --card-bg: rgba(30, 30, 35, 0.65);
+    --card-bg-hover: rgba(44, 44, 46, 0.85);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --card-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.7);
+    --accent-blue: #0a84ff;
+    
+    /* Dark Mode Yellow Theme for Kuzyniakowo */
+    --yellow-card-bg: rgba(45, 40, 20, 0.65);
+    --yellow-card-hover: rgba(60, 52, 24, 0.85);
+    --yellow-border: rgba(255, 214, 10, 0.25);
+    --yellow-accent: #ffd60a;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: var(--bg-dark);
-    background: radial-gradient(circle at 50% 30%, #1a050a 0%, #050507 80%);
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
+    background: var(--bg-dark);
+    background-image: var(--bg-gradient);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    color: var(--text-primary);
     user-select: none;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Background Canvas & Ambient Glows */
-#particles {
+/* Subtle Ambient Background Mesh */
+.ambient-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -56,168 +63,278 @@ body {
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    overflow: hidden;
 }
 
-.glow {
-    position: fixed;
-    width: 1000px;
-    height: 1000px;
+.blob {
+    position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--red-glow), transparent 70%);
     filter: blur(120px);
-    mix-blend-mode: screen;
-    z-index: 1;
-    animation: moveGlow 22s ease-in-out infinite alternate;
-    pointer-events: none;
+    opacity: 0.15;
 }
 
-.glow-2 {
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: #0a84ff;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 650px;
+    height: 650px;
+    background: #ffd60a;
+}
+
+/* Top Right PL/ENG Button */
+.lang-toggle-btn {
     position: fixed;
-    width: 800px;
-    height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(180, 0, 40, 0.3), transparent 65%);
-    filter: blur(100px);
-    z-index: 1;
-    animation: moveGlow2 18s ease-in-out infinite alternate;
-    pointer-events: none;
+    top: 24px;
+    right: 24px;
+    background: rgba(30, 30, 35, 0.7);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--card-shadow);
+    z-index: 100;
+    transition: all 0.2s ease;
 }
 
-@keyframes moveGlow {
-    0% { transform: translate(-30%, -20%); }
-    100% { transform: translate(20%, 20%); }
+.lang-toggle-btn:hover {
+    background: rgba(44, 44, 46, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-@keyframes moveGlow2 {
-    0% { transform: translate(30%, 30%); }
-    100% { transform: translate(-20%, -10%); }
-}
-
-/* Main Container */
+/* Container */
 .content {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 680px;
-    padding: 40px 20px;
+    max-width: 580px;
+    padding: 60px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-/* Profile / Title Section */
+/* Header Section */
 .profile-title {
-    font-size: 3.8rem;
-    font-weight: 900;
-    letter-spacing: 10px;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(255, 26, 64, 0.6), 0 0 40px rgba(255, 26, 64, 0.2);
-    margin-bottom: 6px;
+    font-size: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 4px;
 }
 
 .tagline {
     font-size: 0.95rem;
-    color: var(--text-muted);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 35px;
-    font-weight: 500;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
 }
 
 .tagline span {
-    color: var(--red-primary);
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
-/* Social Links Grid */
+/* EDITABLE WHITE DESCRIPTION STYLES (Normal Weight) */
+.profile-description {
+    font-size: 0.95rem;
+    color: #ffffff;
+    font-weight: 400; /* Fixed: normal weight, not bold */
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+}
+
+/* Section Labels */
+.section-header {
+    width: 100%;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    margin-top: 10px;
+    padding-left: 4px;
+}
+
+/* Links & Cards */
 .links {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-bottom: 25px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .link-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 24px;
-    border-radius: 12px;
+    padding: 16px 20px;
+    border-radius: 18px;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     text-decoration: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: 1px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    box-shadow: var(--card-shadow);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .link-left {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
 }
 
 .link-card svg {
     width: 22px;
     height: 22px;
     fill: currentColor;
-    transition: transform 0.3s ease, color 0.3s ease;
+    color: var(--text-primary);
+    transition: transform 0.25s ease;
 }
 
 .link-card:hover {
-    transform: translateY(-3px) scale(1.01);
-    border-color: var(--red-primary);
-    background: rgba(35, 12, 20, 0.85);
-    box-shadow: 0 8px 25px rgba(255, 26, 64, 0.25);
+    transform: translateY(-2px);
+    background: var(--card-bg-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--card-shadow-hover);
 }
 
-.link-card:hover svg {
-    color: var(--red-primary);
-    transform: scale(1.15);
+.link-card:active {
+    transform: translateY(0) scale(0.99);
 }
 
 .link-arrow {
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    transition: transform 0.3s ease, color 0.3s ease;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .link-card:hover .link-arrow {
-    transform: translateX(5px);
-    color: var(--red-primary);
+    transform: translateX(3px);
+    color: var(--text-primary);
 }
 
-/* Textbox Containers (Discord & Bank) */
+/* Collapsible Donations Section */
+.donations-wrapper {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    box-shadow: var(--card-shadow);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.donations-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.donations-header:hover {
+    background: var(--card-bg-hover);
+}
+
+.donations-header .link-arrow {
+    transition: transform 0.3s ease;
+}
+
+.donations-wrapper.active .donations-header .link-arrow {
+    transform: rotate(90deg);
+}
+
+.donations-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.donations-wrapper.active .donations-content {
+    max-height: 300px;
+    padding: 0 20px 20px 20px;
+}
+
+.donation-option {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 14px 16px;
+}
+
+.paypal-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.paypal-link:hover {
+    color: var(--accent-blue);
+}
+
+/* Info Box (Discord Username) */
 .info-box-container {
     width: 100%;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 18px 22px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 18px;
+    padding: 18px 20px;
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    box-shadow: var(--card-shadow);
+    margin-bottom: 12px;
     text-align: left;
-    margin-bottom: 14px;
 }
 
 .info-label {
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--red-primary);
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .info-input-group {
@@ -227,195 +344,175 @@ body {
 
 .info-input {
     flex: 1;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 26, 64, 0.3);
-    border-radius: 8px;
-    padding: 12px 16px;
-    color: #ffffff;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: var(--text-primary);
     font-family: 'Fira Code', monospace;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .info-input:focus {
-    border-color: var(--red-primary);
-    box-shadow: 0 0 10px var(--red-glow);
+    border-color: var(--accent-blue);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .copy-btn {
-    background: var(--red-primary);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    padding: 0 20px;
-    font-weight: 700;
-    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    color: var(--text-primary);
+    padding: 0 16px;
+    font-weight: 600;
+    font-size: 0.82rem;
     cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     white-space: nowrap;
 }
 
 .copy-btn:hover {
-    background: var(--red-hover);
-    box-shadow: 0 0 15px var(--red-glow);
-    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .copy-btn:active {
-    transform: translateY(0);
+    transform: scale(0.96);
 }
 
-/* Toggle Console Button */
-.console-toggle-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: rgba(15, 8, 12, 0.8);
-    border: 1px solid var(--card-border);
-    color: var(--text-muted);
-    padding: 10px 16px;
-    border-radius: 30px;
-    font-size: 0.8rem;
-    font-family: 'Fira Code', monospace;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.console-toggle-btn:hover {
-    color: #fff;
-    border-color: var(--red-primary);
-    box-shadow: 0 0 15px var(--red-glow);
-}
-
-/* Console Window */
-.console {
-    position: fixed;
-    bottom: 80px;
-    right: 25px;
-    width: 360px;
-    height: 250px;
-    background: rgba(8, 4, 6, 0.92);
-    border: 1px solid var(--red-primary);
-    border-radius: 10px;
-    backdrop-filter: blur(16px);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 26, 64, 0.2);
-    z-index: 999;
-    overflow: hidden;
+/* Projects Section (Under Everything) */
+.projects {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    gap: 12px;
 }
 
-.console.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(15px) scale(0.95);
-}
-
-.console-header {
-    padding: 10px 14px;
-    background: rgba(255, 26, 64, 0.12);
-    border-bottom: 1px solid rgba(255, 26, 64, 0.25);
-    cursor: grab;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    color: var(--red-primary);
+.project-card {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-family: 'Fira Code', monospace;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-radius: 18px;
+    background: var(--yellow-card-bg);
+    border: 1px solid var(--yellow-border);
+    text-decoration: none;
+    color: var(--text-primary);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    box-shadow: var(--card-shadow);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.console-header::after {
-    content: "ESC to close";
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.4);
+.project-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    border-radius: 6px;
 }
 
-.console-header:active {
-    cursor: grabbing;
+.project-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-.console-output {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 12px;
-    font-size: 12px;
-    font-family: 'Fira Code', monospace;
-    color: #d0d0d0;
-    line-height: 1.5;
+.project-title {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
-.console-output div {
-    margin-bottom: 4px;
+.project-date {
+    font-size: 0.75rem;
+    color: var(--yellow-accent);
+    font-weight: 500;
+    margin-top: 1px;
 }
 
-.console input {
-    width: 100%;
-    padding: 10px 12px;
-    border: none;
-    outline: none;
-    background: rgba(0, 0, 0, 0.6);
-    color: #ffffff;
-    font-family: 'Fira Code', monospace;
-    font-size: 12px;
-    border-top: 1px solid rgba(255, 26, 64, 0.2);
+.project-card:hover {
+    transform: translateY(-2px);
+    background: var(--yellow-card-hover);
+    border-color: rgba(255, 214, 10, 0.4);
+    box-shadow: var(--card-shadow-hover);
 }
 
-.console input::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+.project-card:hover .link-arrow {
+    transform: translateX(3px);
+    color: var(--text-primary);
 }
 
-/* Custom Scrollbar */
-.console-output::-webkit-scrollbar {
-    width: 5px;
-}
-.console-output::-webkit-scrollbar-track {
-    background: transparent;
-}
-.console-output::-webkit-scrollbar-thumb {
-    background: var(--red-primary);
-    border-radius: 3px;
+/* Footer Links at Absolute Bottom */
+.site-footer {
+    margin-top: 32px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* Mobile Responsiveness */
+.site-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+    color: var(--text-primary);
+}
+
+/* PHONE / MOBILE VERSION CSS STYLES START HERE */
 @media (max-width: 600px) {
+    .content {
+        padding: 40px 16px;
+        max-width: 100%;
+    }
     .profile-title {
-        font-size: 2.8rem;
-        letter-spacing: 6px;
+        font-size: 2.2rem;
+        letter-spacing: -0.03em;
     }
-    .link-card {
-        padding: 14px 18px;
+    .profile-description {
+        font-size: 0.9rem;
     }
-    .console {
-        width: 90%;
-        right: 5%;
-        left: 5%;
-        bottom: 80px;
+    .link-card, .project-card, .info-box-container, .donations-header {
+        padding: 14px 16px;
+        border-radius: 14px;
+    }
+    .lang-toggle-btn {
+        top: 16px;
+        right: 16px;
+        padding: 6px 12px;
+        font-size: 0.72rem;
     }
 }
+/* PHONE / MOBILE VERSION CSS STYLES END */
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-<div class="glow"></div>
-<div class="glow-2"></div>
+<!-- Dark Ambient Blobs -->
+<div class="ambient-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+</div>
 
+<!-- Top Right PL/ENG Button -->
+<button class="lang-toggle-btn" id="langBtn">PL / ENG</button>
+
+<!-- PHONE / MOBILE VERSION HTML LAYOUT & CONTENT START -->
 <div class="content">
-    <h1 class="profile-title">ITZMROLAS</h1>
-    <p class="tagline">Official <span>Links</span> & Media</p>
+    <h1 class="profile-title">itzmrolas</h1>
+    <p class="tagline" id="taglineText">Official <span>Links</span> & Media</p>
+    
+    <!-- EDITABLE WHITE DESCRIPTION (Normal Font Weight) -->
+    <p class="profile-description" id="editableDescription">Im a PL/ENG YouTube/TikTok content creator.</p>
 
+    <!-- Main Links -->
     <div class="links">
         <!-- YouTube -->
         <a class="link-card" href="https://www.youtube.com/@itzmrolas" target="_blank" rel="noopener noreferrer">
@@ -461,22 +558,47 @@ body {
             </div>
             <span class="link-arrow">&#x276F;</span>
         </a>
-
-        <!-- Support / PayPal -->
-        <a class="link-card" href="https://paypal.me/itzmrolas" target="_blank" rel="noopener noreferrer">
-            <div class="link-left">
-                <svg viewBox="0 0 24 24"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .761-.65h6.398c2.906 0 5.105.748 5.86 2.083.69 1.22.427 2.923-.621 4.296-1.127 1.474-3.003 2.302-5.426 2.302H9.255a.641.641 0 0 0-.633.54l-.87 5.518-.016.103-.66 4.185a.641.641 0 0 1-.633.54h-.367zm12.37-13.43c-.443-.781-1.428-1.258-2.768-1.335h-5.01l-2.09 13.25h1.868a.641.641 0 0 0 .633-.54l.87-5.518a.77.77 0 0 1 .761-.65h1.232c3.55 0 6.136-1.393 6.942-3.87.327-1.006.185-1.921-.438-2.337z"/></svg>
-                <span>Support (PayPal)</span>
-            </div>
-            <span class="link-arrow">&#x276F;</span>
-        </a>
     </div>
 
-    <!-- Discord Textbox Section -->
+    <!-- Collapsible Donations Section -->
+    <div class="donations-wrapper" id="donationsWrapper">
+        <div class="donations-header" id="donationsHeader">
+            <div class="link-left">
+                <svg style="width:22px;height:22px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <span id="donationsTitle">Donations & Support</span>
+            </div>
+            <span class="link-arrow">&#x276F;</span>
+        </div>
+        <div class="donations-content">
+            <!-- PayPal Link -->
+            <div class="donation-option">
+                <a class="paypal-link" href="https://paypal.me/itzmrolas" target="_blank" rel="noopener noreferrer">
+                    <div class="link-left">
+                        <svg style="width:18px;height:18px;fill:currentColor;" viewBox="0 0 24 24"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .761-.65h6.398c2.906 0 5.105.748 5.86 2.083.69 1.22.427 2.923-.621 4.296-1.127 1.474-3.003 2.302-5.426 2.302H9.255a.641.641 0 0 0-.633.54l-.87 5.518-.016.103-.66 4.185a.641.641 0 0 1-.633.54h-.367zm12.37-13.43c-.443-.781-1.428-1.258-2.768-1.335h-5.01l-2.09 13.25h1.868a.641.641 0 0 0 .633-.54l.87-5.518a.77.77 0 0 1 .761-.65h1.232c3.55 0 6.136-1.393 6.942-3.87.327-1.006.185-1.921-.438-2.337z"/></svg>
+                        <span>PayPal (paypal.me/itzmrolas)</span>
+                    </div>
+                    <span class="link-arrow">&#x276F;</span>
+                </a>
+            </div>
+            <!-- Bank Transfer Copy Box -->
+            <div class="donation-option">
+                <div class="info-label">
+                    <svg style="width:14px;height:14px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 10h2v7H4zm6 0h2v7h-2zm6 0h2v7h-2zM2 22h20v-3H2v3zm10-20L2 6v2h20V6l-10-4z"/></svg>
+                    <span id="bankLabelText">Bank Transfer (PLN)</span>
+                </div>
+                <div class="info-input-group">
+                    <input type="text" class="info-input" id="bankAccount" value="26 1050 1445 1000 0098 5161 0189" readonly />
+                    <button class="copy-btn" id="copyBankBtn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Discord Username Section -->
     <div class="info-box-container">
         <div class="info-label">
-            <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z"/></svg>
-            <span>Discord Username</span>
+            <svg style="width:14px;height:14px;fill:currentColor;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z"/></svg>
+            <span id="discordLabelText">Discord Username</span>
         </div>
         <div class="info-input-group">
             <input type="text" class="info-input" id="discordUsername" value="itzmrolas" readonly />
@@ -484,248 +606,116 @@ body {
         </div>
     </div>
 
-    <!-- Bank Account Section -->
-    <div class="info-box-container">
-        <div class="info-label">
-            <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 10h2v7H4zm6 0h2v7h-2zm6 0h2v7h-2zM2 22h20v-3H2v3zm10-20L2 6v2h20V6l-10-4z"/></svg>
-            <span>Bank Transfer (PLN)</span>
-        </div>
-        <div class="info-input-group">
-            <input type="text" class="info-input" id="bankAccount" value="26 1050 1445 1000 0098 5161 0189" readonly />
-            <button class="copy-btn" id="copyBankBtn">Copy</button>
-        </div>
+    <!-- Projects Section (Under Everything) -->
+    <div class="section-header" id="projectsHeader">Projects</div>
+    <div class="projects">
+        <a class="project-card" href="https://itzmrolas.eu/kuzyniakowo" target="_blank" rel="noopener noreferrer">
+            <div class="link-left">
+                <img src="icon.png" alt="Kuzyniakowo" class="project-icon">
+                <div class="project-info">
+                    <span class="project-title">Kuzyniakowo</span>
+                    <span class="project-date" id="kuzyniakowoDate">Started 16th September</span>
+                </div>
+            </div>
+            <span class="link-arrow">&#x276F;</span>
+        </a>
     </div>
-</div>
 
-<!-- Console Floating Toggle Button -->
-<button class="console-toggle-btn" id="toggleConsoleBtn">
-    <span>&gt;_ Dev Console</span>
-</button>
-
-<!-- Dev Console -->
-<div id="console" class="console hidden">
-    <div class="console-header" id="consoleHeader">DEV CONSOLE</div>
-    <div id="consoleOutput" class="console-output">
-        <div style="color: var(--red-primary);">&gt; System initialized. Type /help for commands.</div>
-    </div>
-    <input id="consoleInput" placeholder="Type command..." autocomplete="off" spellcheck="false" />
+    <!-- Footer Email & Privacy Link (At Absolute Bottom) -->
+    <footer class="site-footer">
+        <a href="mailto:aleksanderswigost@gmail.com">aleksanderswigost@gmail.com</a>
+        <span>|</span>
+        <a href="https://itzmrolas.eu/privacy" target="_blank" rel="noopener noreferrer" id="privacyLink">Privacy Policy</a>
+    </footer>
 </div>
+<!-- PHONE / MOBILE VERSION HTML LAYOUT & CONTENT END -->
 
 <script>
-/* ===== CRIMSON RIBBON / WAVE CANVAS ===== */
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+/* Unfold Donations Accordion */
+const donationsWrapper = document.getElementById("donationsWrapper");
+const donationsHeader = document.getElementById("donationsHeader");
 
-let width, height;
-function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resize);
-resize();
+donationsHeader.addEventListener("click", () => {
+    donationsWrapper.classList.toggle("active");
+});
 
-let time = 0;
-
-function animate() {
-    ctx.clearRect(0, 0, width, height);
-    time += 0.0035;
-
-    // Glowing Red/Crimson Waves
-    const waves = [
-        { amplitude: 130, frequency: 0.001, speed: 1.4, color: "rgba(255, 26, 64, 0.03)", glow: "rgba(255, 26, 64, 0.25)", offset: 0 },
-        { amplitude: 170, frequency: 0.0012, speed: 1.1, color: "rgba(180, 0, 40, 0.02)", glow: "rgba(255, 50, 80, 0.15)", offset: Math.PI },
-        { amplitude: 90, frequency: 0.0018, speed: 1.8, color: "rgba(255, 26, 64, 0.02)", glow: "rgba(255, 26, 64, 0.1)", offset: Math.PI / 2 }
-    ];
-
-    waves.forEach((w, index) => {
-        ctx.beginPath();
-        ctx.moveTo(-50, height / 2);
-
-        for (let x = -50; x <= width + 50; x += 25) {
-            let y = height / 2 
-                + Math.sin(x * w.frequency + time * w.speed + w.offset) * w.amplitude
-                + Math.cos(x * w.frequency * 0.5 - time) * 45;
-            ctx.lineTo(x, y);
-        }
-
-        ctx.lineTo(width + 50, height + 50);
-        ctx.lineTo(-50, height + 50);
-        ctx.closePath();
-
-        ctx.fillStyle = w.color;
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.moveTo(-50, height / 2);
-        for (let x = -50; x <= width + 50; x += 25) {
-            let y = height / 2 
-                + Math.sin(x * w.frequency + time * w.speed + w.offset) * w.amplitude
-                + Math.cos(x * w.frequency * 0.5 - time) * 45;
-            ctx.lineTo(x, y);
-        }
-        ctx.lineWidth = 1.5;
-        ctx.strokeStyle = w.glow;
-        ctx.stroke();
-    });
-
-    requestAnimationFrame(animate);
-}
-animate();
-
-/* ===== COPY DISCORD USERNAME ===== */
+/* Copy Actions */
 const copyBtn = document.getElementById("copyBtn");
 const discordInput = document.getElementById("discordUsername");
 
 copyBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(discordInput.value).then(() => {
-        copyBtn.innerText = "Copied!";
-        copyBtn.style.background = "#28a745";
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = currentLang === 'EN' ? "Copied" : "Skopiowano";
+        copyBtn.style.background = "#30d158";
+        copyBtn.style.color = "#000000";
         setTimeout(() => {
-            copyBtn.innerText = "Copy";
-            copyBtn.style.background = "var(--red-primary)";
+            copyBtn.innerText = currentLang === 'EN' ? "Copy" : "Kopiuj";
+            copyBtn.style.background = "rgba(255, 255, 255, 0.1)";
+            copyBtn.style.color = "var(--text-primary)";
         }, 2000);
-    }).catch(err => {
-        console.error("Failed to copy text: ", err);
     });
 });
 
-/* ===== COPY BANK ACCOUNT ===== */
 const copyBankBtn = document.getElementById("copyBankBtn");
 const bankInput = document.getElementById("bankAccount");
 
 copyBankBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(bankInput.value).then(() => {
-        copyBankBtn.innerText = "Copied!";
-        copyBankBtn.style.background = "#28a745";
+        copyBankBtn.innerText = currentLang === 'EN' ? "Copied" : "Skopiowano";
+        copyBankBtn.style.background = "#30d158";
+        copyBankBtn.style.color = "#000000";
         setTimeout(() => {
-            copyBankBtn.innerText = "Copy";
-            copyBankBtn.style.background = "var(--red-primary)";
+            copyBankBtn.innerText = currentLang === 'EN' ? "Copy" : "Kopiuj";
+            copyBankBtn.style.background = "rgba(255, 255, 255, 0.1)";
+            copyBankBtn.style.color = "var(--text-primary)";
         }, 2000);
-    }).catch(err => {
-        console.error("Failed to copy text: ", err);
     });
 });
 
-/* ===== CONSOLE LOGIC ===== */
-const consoleBox = document.getElementById("console");
-const input = document.getElementById("consoleInput");
-const output = document.getElementById("consoleOutput");
-const header = document.getElementById("consoleHeader");
-const toggleConsoleBtn = document.getElementById("toggleConsoleBtn");
+/* Real Functional Language Toggle (PL / ENG) */
+let currentLang = 'EN';
+const langBtn = document.getElementById("langBtn");
 
-function toggleConsole() {
-    consoleBox.classList.toggle("hidden");
-    if (!consoleBox.classList.contains("hidden")) {
-        input.focus();
+const translations = {
+    EN: {
+        tagline: 'Official <span>Links</span> & Media',
+        description: 'Im a PL/ENG YouTube/TikTok content creator.',
+        donationsTitle: 'Donations & Support',
+        bankLabel: 'Bank Transfer (PLN)',
+        discordLabel: 'Discord Username',
+        projectsHeader: 'Projects',
+        kuzyniakowoDate: 'Started 16th September',
+        privacy: 'Privacy Policy',
+        copyBtn: 'Copy'
+    },
+    PL: {
+        tagline: 'Oficjalne <span>Linki</span> & Media',
+        description: 'Jestem twórcą treści YouTube/TikTok (PL/ENG).',
+        donationsTitle: 'Wsparcie & Dotacje',
+        bankLabel: 'Przelew bankowy (PLN)',
+        discordLabel: 'Nazwa użytkownika Discord',
+        projectsHeader: 'Projekty',
+        kuzyniakowoDate: 'Rozpoczęto 16 września',
+        privacy: 'Polityka Prywatności',
+        copyBtn: 'Kopiuj'
     }
-}
+};
 
-toggleConsoleBtn.addEventListener("click", toggleConsole);
+langBtn.addEventListener("click", () => {
+    currentLang = currentLang === 'EN' ? 'PL' : 'EN';
+    const t = translations[currentLang];
 
-window.addEventListener("keydown", (e) => {
-    if (e.key === "/" && document.activeElement !== input) {
-        e.preventDefault();
-        toggleConsole();
-    }
-
-    if (e.key === "Escape" && !consoleBox.classList.contains("hidden")) {
-        consoleBox.classList.add("hidden");
-        input.blur();
-    }
-});
-
-function log(msg, color = "#d0d0d0") {
-    output.innerHTML += `<div style="color: ${color};">&gt; ${msg}</div>`;
-    output.scrollTop = output.scrollHeight;
-}
-
-input.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-
-    const cmd = input.value.trim();
-    input.value = "";
-
-    if (!cmd) return;
-
-    log(cmd, "#888");
-
-    if (cmd === "/time") log(new Date().toLocaleTimeString());
-    else if (cmd === "/name") log("My name is Alex");
-    else if (cmd === "/mail") log("Contact me: itzmrolas@outlook.com");
-    else if (cmd === "/chess") {
-        window.open("https://www.chess.com", "_blank");
-        log("Opening Chess.com...", "#ff1a40");
-    }
-    else if (cmd === "/rythm game" || cmd === "/rythm") {
-        window.open("https://itzmrolas.github.io/playarythmgame/", "_blank");
-        log("Opening Rythm Game...", "#ff1a40");
-    }
-    else if (cmd === "/clear") {
-        output.innerHTML = "";
-    }
-    else if (cmd === "/help") {
-        log("Available Commands:");
-        log("  /time  - Shows current time");
-        log("  /name  - Displays my name");
-        log("  /mail  - Displays my contact email");
-        log("  /chess - Opens chess.com");
-        log("  /rythm - Opens my rythm game");
-        log("  /open [platform] - Opens specified social link");
-        log("  /clear - Clears the console");
-    }
-    else if (cmd.startsWith("/open")) {
-        const arg = cmd.split(" ")[1];
-
-        const links = {
-            yt: "https://www.youtube.com/@itzmrolas",
-            youtube: "https://www.youtube.com/@itzmrolas",
-            tiktok: "https://www.tiktok.com/@itzmrolas",
-            insta: "https://www.instagram.com/itzmrolas",
-            instagram: "https://www.instagram.com/itzmrolas",
-            spotify: "https://open.spotify.com/user/31lk4chceqkrc6xcaa2kurtlyfbm",
-            discord: "https://discord.gg/6nPEVJkJmH",
-            paypal: "https://paypal.me/itzmrolas"
-        };
-
-        if (links[arg]) {
-            window.open(links[arg], "_blank");
-            log(`Opening ${arg}...`, "#ff1a40");
-        } else {
-            log("Unknown platform. Options: yt, tiktok, insta, spotify, discord, paypal", "#ff4d4d");
-        }
-    }
-    else {
-        log("Unknown command. Type /help for options.", "#ff4d4d");
-    }
-});
-
-/* ===== DRAG CONSOLE ===== */
-let dragging = false;
-let offsetX = 0;
-let offsetY = 0;
-
-header.addEventListener("mousedown", (e) => {
-    dragging = true;
-    offsetX = e.clientX - consoleBox.offsetLeft;
-    offsetY = e.clientY - consoleBox.offsetTop;
-    document.body.style.cursor = "grabbing";
-});
-
-document.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
-    let newLeft = e.clientX - offsetX;
-    let newTop = e.clientY - offsetY;
-    newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - consoleBox.offsetWidth));
-    newTop = Math.max(0, Math.min(newTop, window.innerHeight - consoleBox.offsetHeight));
-    consoleBox.style.left = newLeft + "px";
-    consoleBox.style.top = newTop + "px";
-});
-
-document.addEventListener("mouseup", () => {
-    if (dragging) {
-        dragging = false;
-        document.body.style.cursor = "default";
-    }
+    document.getElementById("taglineText").innerHTML = t.tagline;
+    document.getElementById("editableDescription").innerText = t.description;
+    document.getElementById("donationsTitle").innerText = t.donationsTitle;
+    document.getElementById("bankLabelText").innerText = t.bankLabel;
+    document.getElementById("discordLabelText").innerText = t.discordLabel;
+    document.getElementById("projectsHeader").innerText = t.projectsHeader;
+    document.getElementById("kuzyniakowoDate").innerText = t.kuzyniakowoDate;
+    document.getElementById("privacyLink").innerText = t.privacy;
+    copyBtn.innerText = t.copyBtn;
+    copyBankBtn.innerText = t.copyBtn;
 });
 </script>
 
