@@ -151,19 +151,11 @@ body {
     font-size: 0.95rem;
     color: var(--text-secondary);
     font-weight: 400;
-    margin-bottom: 6px;
 }
 
 .tagline span {
     color: var(--text-primary);
     font-weight: 500;
-}
-
-.profile-description {
-    font-size: 0.95rem;
-    color: #ffffff;
-    font-weight: 400;
-    letter-spacing: -0.01em;
 }
 
 /* Blog Hero Section (Video Left, Scaled-Up PFP Right) */
@@ -209,6 +201,20 @@ body {
 
 .profile-pfp:hover {
     transform: scale(1.03);
+}
+
+/* Description Section (Real talk style, white text, no background box) */
+.profile-description {
+    font-size: 0.92rem;
+    color: #ffffff;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 4px;
 }
 
 /* Section Headings inside the sheet */
@@ -506,7 +512,6 @@ body {
     <div class="profile-header">
         <h1 class="profile-title">itzmrolas</h1>
         <p class="tagline" id="taglineText">Official <span>Links</span> & Media</p>
-        <p class="profile-description" id="editableDescription">Im a Polish and English YouTube, TikTok and Instagram creator.</p>
     </div>
 
     <!-- Blog Hero Section (Video Left, Scaled Up PFP Right) -->
@@ -517,6 +522,12 @@ body {
         <div class="profile-pfp-container">
             <img src="pfp.png" alt="Profile Picture" class="profile-pfp">
         </div>
+    </div>
+
+    <!-- Natural Description Section (No background box, crisp white text) -->
+    <div class="profile-description" id="editableDescription">
+        <p>I'm itzmrolas — I make videos, mess around with code, and build random projects I actually care about. This site is basically just a home base to keep all my socials and stuff in one place.</p>
+        <p>Whether you found me through YouTube, TikTok, or just stumbled on my page, feel free to look around or check out what I'm currently working on.</p>
     </div>
 
     <!-- Official Links Section -->
@@ -694,7 +705,8 @@ const langBtn = document.getElementById("langBtn");
 const translations = {
     EN: {
         tagline: 'Official <span>Links</span> & Media',
-        description: 'Im a Polish and English YouTube, TikTok and Instagram creator.',
+        description: `<p>I'm itzmrolas — I make videos, mess around with code, and build random projects I actually care about. This site is basically just a home base to keep all my socials and stuff in one place.</p>
+        <p>Whether you found me through YouTube, TikTok, or just stumbled on my page, feel free to look around or check out what I'm currently working on.</p>`,
         channelsLabel: 'Channels & Socials',
         projectsLabel: 'Projects',
         kuzyniakowoDate: 'Started 16th September',
@@ -707,7 +719,8 @@ const translations = {
     },
     PL: {
         tagline: 'Oficjalne <span>Linki</span> & Media',
-        description: 'Jestem polskim i angielskim twórcą treści na YouTube, TikTok i Instagram.',
+        description: `<p>Jestem itzmrolas — robię filmy, grzebię w kodzie i tworzę różne projekty, które mnie wkręcają. Ta strona to taka baza wypadowa, żeby trzymać wszystkie mojeLinki i rzeczy w jednym miejscu.</p>
+        <p>Niezależnie od tego, czy trafiasz tu z YouTube'a, TikToka, czy po prostu z przypadku, rozgość się i obczaj, nad czym aktualnie pracuję.</p>`,
         channelsLabel: 'Kanały i Społeczność',
         projectsLabel: 'Projekty',
         kuzyniakowoDate: 'Rozpoczęto 16 września',
@@ -725,7 +738,7 @@ langBtn.addEventListener("click", () => {
     const t = translations[currentLang];
 
     document.getElementById("taglineText").innerHTML = t.tagline;
-    document.getElementById("editableDescription").innerText = t.description;
+    document.getElementById("editableDescription").innerHTML = t.description;
     document.getElementById("channelsLabel").innerText = t.channelsLabel;
     document.getElementById("projectsLabel").innerText = t.projectsLabel;
     document.getElementById("kuzyniakowoDate").innerText = t.kuzyniakowoDate;
