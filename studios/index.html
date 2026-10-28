@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleksander Studios™</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0e;
+            --card-bg: #141419;
+            --accent-color: #6366f1;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #27272a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        #loginOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+        }
+
+        .login-box h3 { margin-bottom: 0.5rem; color: var(--text-main); }
+        .login-box p.subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+        .login-box input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1.25rem;
+            text-align: center;
+            letter-spacing: 0.25em;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .login-box button:hover { background: #4f46e5; }
+        #loginError { color: #ef4444; font-size: 0.85rem; margin-top: 0.75rem; display: none; }
+
+        header {
+            text-align: center;
+            padding: 4rem 1rem 2rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+            background: linear-gradient(to bottom, #111116, var(--bg-color));
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-info { padding: 1rem 1.25rem; }
+        .video-info h4 { font-size: 1rem; font-weight: 600; color: var(--text-main); }
+
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loginOverlay">
+        <div class="login-box">
+            <h3>Aleksander Studios™</h3>
+            <p class="subtitle">Enter 6-digit Authenticator Code</p>
+            <input type="text" id="totpInput" maxlength="6" placeholder="000000" onkeypress="if(event.key === 'Enter') handleLogin()">
+            <button onclick="handleLogin()">Verify</button>
+            <p id="loginError">Invalid verification code</p>
+        </div>
+    </div>
+
+    <header>
+        <h1>Aleksander Studios™</h1>
+        <p>Independent Production House</p>
+    </header>
+
+    <div class="container" id="app"></div>
+
+    <footer>
+        <p>&copy; 2026 Aleksander Studios™. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // REPLACE WITH YOUR ACTUAL VERCEL API ENDPOINT URL
+        const API_URL = "https://YOUR-VERCEL-APP.vercel.app/api/verify";
+
+        async function handleLogin() {
+            const code = document.getElementById("totpInput").value;
+            const error = document.getElementById("loginError");
+            error.style.display = "none";
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    renderPage(result.data);
+                    document.getElementById("loginOverlay").style.display = "none";
+                } else {
+                    error.textContent = result.error || "Invalid verification code";
+                    error.style.display = "block";
+                }
+            } catch (err) {
+                error.textContent = "Server connection error";
+                error.style.display = "block";
+            }
+        }
+
+        function renderPage(categories) {
+            const app = document.getElementById("app");
+            app.innerHTML = "";
+
+            categories.forEach(cat => {
+                const section = document.createElement("section");
+                const title = document.createElement("h2");
+                title.textContent = cat.title;
+                section.appendChild(title);
+
+                const grid = document.createElement("div");
+                grid.className = "grid";
+
+                cat.videos.forEach(v => {
+                    const card = document.createElement("div");
+                    card.className = "video-card";
+                    card.innerHTML = `
+                        <div class="video-wrapper">
+                            <iframe src="https://drive.google.com/file/d/${v.id}/preview" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h4>${v.name}</h4>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                section.appendChild(grid);
+                app.appendChild(section);
+            });
+        }
+    </script>
+</body>
+</html>
