@@ -5,240 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aleksander Studios™</title>
     <style>
-        :root {
-            --bg-color: #0b0b0e;
-            --card-bg: #141419;
-            --accent-color: #6366f1;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #27272a;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 4rem;
-        }
-
-        #loginOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color);
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            z-index: 9999;
+            padding: 4rem 1rem;
+            margin: 0;
+            min-height: 100vh;
         }
 
-        .login-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .auth-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            background: #141414;
             padding: 2.5rem;
             border-radius: 12px;
-            text-align: center;
-            max-width: 360px;
-            width: 90%;
+            border: 1px solid #222;
+            width: 100%;
+            max-width: 320px;
         }
 
-        .login-box h3 { margin-bottom: 0.5rem; color: var(--text-main); }
-        .login-box p.subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
-
-        .login-box input {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+        input {
+            background: #0a0a0a;
+            border: 1px solid #333;
             color: #fff;
-            font-size: 1.25rem;
+            padding: 0.8rem;
+            font-size: 1.2rem;
             text-align: center;
-            letter-spacing: 0.25em;
+            border-radius: 6px;
+            width: 100%;
+            outline: none;
+            box-sizing: border-box;
+            letter-spacing: 4px;
         }
 
-        .login-box button {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--accent-color);
+        input:focus {
+            border-color: #ffffff;
+        }
+
+        button {
+            background: #ffffff;
+            color: #000000;
             border: none;
+            padding: 0.8rem;
+            font-size: 1rem;
+            font-weight: bold;
             border-radius: 6px;
-            color: #fff;
-            font-weight: 600;
             cursor: pointer;
+            width: 100%;
         }
 
-        .login-box button:hover { background: #4f46e5; }
-        #loginError { color: #ef4444; font-size: 0.85rem; margin-top: 0.75rem; display: none; }
+        button:hover {
+            background: #e0e0e0;
+        }
 
-        header {
-            text-align: center;
-            padding: 4rem 1rem 2rem 1rem;
-            border-bottom: 1px solid var(--border-color);
+        .error {
+            color: #ff4d4d;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        #vault {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .category {
             margin-bottom: 3rem;
-            background: linear-gradient(to bottom, #111116, var(--bg-color));
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #ffffff, #9ca3af);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-        section { margin-bottom: 4rem; }
-
-        h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
+        .category h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #aaa;
+            border-bottom: 1px solid #222;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-color);
-            display: inline-block;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .video-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-color);
-        }
-
-        .video-wrapper {
+        .iframe-container {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
-            background: #000;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #222;
+            background-color: #141414;
+            margin-bottom: 1.5rem;
         }
 
-        .video-wrapper iframe {
+        .iframe-container iframe {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: none;
-        }
-
-        .video-info { padding: 1rem 1.25rem; }
-        .video-info h4 { font-size: 1rem; font-weight: 600; color: var(--text-main); }
-
-        footer {
-            text-align: center;
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
     </style>
 </head>
 <body>
 
-    <div id="loginOverlay">
-        <div class="login-box">
-            <h3>Aleksander Studios™</h3>
-            <p class="subtitle">Enter 6-digit Authenticator Code</p>
-            <input type="text" id="totpInput" maxlength="6" placeholder="000000" onkeypress="if(event.key === 'Enter') handleLogin()">
-            <button onclick="handleLogin()">Verify</button>
-            <p id="loginError">Invalid verification code</p>
-        </div>
+    <h1>Aleksander Studios™</h1>
+
+    <div id="auth-container" class="auth-box">
+        <p style="margin: 0; color: #888; font-size: 0.9rem;">Enter 6-digit code</p>
+        <form onsubmit="verifyCode(event)" style="width: 100%;">
+            <input type="text" id="code" maxlength="6" inputmode="numeric" placeholder="000000" autocomplete="off" required style="margin-bottom: 1rem;">
+            <button type="submit" id="btn">Verify</button>
+        </form>
+        <div id="error" class="error"></div>
     </div>
 
-    <header>
-        <h1>Aleksander Studios™</h1>
-        <p>Independent Production House</p>
-    </header>
-
-    <div class="container" id="app"></div>
-
-    <footer>
-        <p>&copy; 2026 Aleksander Studios™. All rights reserved.</p>
-    </footer>
+    <div id="vault"></div>
 
     <script>
-        // REPLACE WITH YOUR ACTUAL VERCEL API ENDPOINT URL
         const API_URL = "https://aleksander-auth-backend.vercel.app/api/verify";
 
-        async function handleLogin() {
-            const code = document.getElementById("totpInput").value;
-            const error = document.getElementById("loginError");
+        async function verifyCode(e) {
+            e.preventDefault();
+            const code = document.getElementById("code").value.trim();
+            const btn = document.getElementById("btn");
+            const error = document.getElementById("error");
+
+            btn.disabled = true;
+            btn.innerText = "Verifying...";
             error.style.display = "none";
 
             try {
-                const response = await fetch(API_URL, {
+                const res = await fetch(API_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ code })
+                    body: JSON.stringify({ token: code })
                 });
 
-                const result = await response.json();
+                const data = await res.json();
 
-                if (response.ok && result.success) {
-                    renderPage(result.data);
-                    document.getElementById("loginOverlay").style.display = "none";
+                if (res.ok && data.success) {
+                    document.getElementById("auth-container").style.display = "none";
+                    renderVault(data.data);
+                    document.getElementById("vault").style.display = "block";
                 } else {
-                    error.textContent = result.error || "Invalid verification code";
+                    error.innerText = data.message || "Invalid code.";
                     error.style.display = "block";
                 }
             } catch (err) {
-                error.textContent = "Server connection error";
+                error.innerText = "Server connection error.";
                 error.style.display = "block";
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Verify";
             }
         }
 
-        function renderPage(categories) {
-            const app = document.getElementById("app");
-            app.innerHTML = "";
+        function renderVault(categories) {
+            const vault = document.getElementById("vault");
+            vault.innerHTML = "";
 
             categories.forEach(cat => {
-                const section = document.createElement("section");
-                const title = document.createElement("h2");
-                title.textContent = cat.title;
-                section.appendChild(title);
-
-                const grid = document.createElement("div");
-                grid.className = "grid";
-
-                cat.videos.forEach(v => {
-                    const card = document.createElement("div");
-                    card.className = "video-card";
-                    card.innerHTML = `
-                        <div class="video-wrapper">
-                            <iframe src="https://drive.google.com/file/d/${v.id}/preview" allow="autoplay" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-info">
-                            <h4>${v.name}</h4>
+                const div = document.createElement("div");
+                div.className = "category";
+                
+                let html = `<h2>${cat.title}</h2>`;
+                cat.videos.forEach(video => {
+                    html += `
+                        <p style="color: #888; margin-bottom: 0.5rem; font-size: 0.9rem;">${video.name}</p>
+                        <div class="iframe-container">
+                            <iframe src="https://drive.google.com/file/d/${video.id}/preview" allow="autoplay" allowfullscreen></iframe>
                         </div>
                     `;
-                    grid.appendChild(card);
                 });
-
-                section.appendChild(grid);
-                app.appendChild(section);
+                div.innerHTML = html;
+                vault.appendChild(div);
             });
         }
     </script>
