@@ -1,701 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuzyniakowo</title>
-
-<!-- Website Icon (Favicon) -->
-<link rel="icon" type="image/png" href="favicon.png">
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-
-<style>
-:root {
-    --bg-dark: #000000;
-    --bg-gradient: radial-gradient(circle at 50% 20%, #161618 0%, #000000 80%);
-    --text-primary: #f5f5f7;
-    --text-secondary: #86868b;
-    --sheet-bg: rgba(24, 24, 28, 0.75);
-    --sheet-border: rgba(255, 255, 255, 0.08);
-    --row-bg: rgba(255, 255, 255, 0.03);
-    --row-hover: rgba(255, 255, 255, 0.07);
-    --accent-blue: #0a84ff;
-
-    --yellow-card-bg: rgba(45, 40, 20, 0.65);
-    --yellow-card-hover: rgba(60, 52, 24, 0.85);
-    --yellow-border: rgba(255, 214, 10, 0.25);
-    --yellow-accent: #ffd60a;
-}
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kuzyniakowo</title>
+<!-- Website Icon (Favicon) --><link rel="icon" type="image/png" href="favicon.png">
+<!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>:root {    --bg-dark: #000000;    --bg-gradient: radial-gradient(circle at 50% 20%, #161618 0%, #000000 80%);    --text-primary: #f5f5f7;    --text-secondary: #86868b;    --sheet-bg: rgba(24, 24, 28, 0.75);    --sheet-border: rgba(255, 255, 255, 0.08);    --row-bg: rgba(255, 255, 255, 0.03);    --row-hover: rgba(255, 255, 255, 0.07);    --accent-blue: #0a84ff;
+    --yellow-card-bg: rgba(45, 40, 20, 0.65);    --yellow-card-hover: rgba(60, 52, 24, 0.85);    --yellow-border: rgba(255, 214, 10, 0.25);    --yellow-accent: #ffd60a;}
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-
-body {
-    min-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: var(--bg-dark);
-    background-image: var(--bg-gradient);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
-    color: var(--text-primary);
-    display: flex;
-    justify-content: center;
-    padding: 40px 16px;
-}
-
-/* Subtle Ambient Background Mesh */
-.ambient-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.15;
-}
-
-.blob-1 {
-    top: -10%;
-    left: -10%;
-    width: 600px;
-    height: 600px;
-    background: #ffd60a;
-}
-
-.blob-2 {
-    bottom: -10%;
-    right: -10%;
-    width: 650px;
-    height: 650px;
-    background: #ffd60a;
-}
-
-/* Top Right PL/ENG Button */
-.lang-toggle-btn {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    background: rgba(30, 30, 35, 0.7);
-    border: 1px solid var(--sheet-border);
-    color: var(--text-primary);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    transition: all 0.2s ease;
-}
-
-.lang-toggle-btn:hover {
-    background: rgba(44, 44, 46, 0.9);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Unified Single Page Sheet Container */
-.blog-sheet {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 680px;
-    height: fit-content;
-    background: var(--sheet-bg);
-    border: 1px solid var(--sheet-border);
-    border-radius: 24px;
-    padding: 40px 32px;
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    text-align: center;
-}
-
-/* Back to main page */
-.back-link {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 6px 12px 6px 8px;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-}
-
-.back-link:hover {
-    color: var(--text-primary);
-    background: var(--row-hover);
-}
-
-.back-link span.arrow {
-    display: inline-block;
-    transform: rotate(180deg);
-    font-size: 0.75rem;
-}
-
-/* Header Section */
-.profile-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-}
-
-.header-icon {
-    width: 72px;
-    height: 72px;
-    object-fit: contain;
-    border-radius: 16px;
-    border: 1px solid var(--yellow-border);
-    background: var(--yellow-card-bg);
-    padding: 6px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-.profile-title {
-    font-size: 2.75rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-}
-
-.profile-sub {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--yellow-accent);
-    margin-top: -8px;
-}
-
-/* Description Section */
-.profile-description {
-    font-size: 0.92rem;
-    color: #ffffff;
-    font-weight: 400;
-    line-height: 1.6;
-    letter-spacing: -0.01em;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 0 4px;
-}
-
-.profile-description code {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.82rem;
-    color: var(--yellow-accent);
-    background: rgba(255, 214, 10, 0.08);
-    border: 1px solid var(--yellow-border);
-    padding: 1px 6px;
-    border-radius: 6px;
-    white-space: nowrap;
-}
-
-/* Section Headings inside the sheet */
-.section-block {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: left;
-}
-
-.section-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-secondary);
-    padding-left: 4px;
-}
-
-.rows-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.row-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    border-radius: 14px;
-    background: var(--row-bg);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-}
-
-.row-left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.row-item svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-    color: var(--text-primary);
-}
-
-.row-item:hover {
-    background: var(--row-hover);
-    border-color: rgba(255, 255, 255, 0.12);
-    transform: translateX(2px);
-}
-
-.row-arrow {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    transition: transform 0.2s ease;
-}
-
-.row-item:hover .row-arrow {
-    transform: translateX(3px);
-    color: var(--text-primary);
-}
-
-/* Yellow Styling for the Discord row */
-.yellow-row {
-    background: var(--yellow-card-bg);
-    border: 1px solid var(--yellow-border);
-}
-
-.yellow-row:hover {
-    background: var(--yellow-card-hover);
-    border-color: rgba(255, 214, 10, 0.4);
-}
-
-/* Collapsible Donations Section */
-.donations-accordion {
-    border-radius: 14px;
-    background: var(--row-bg);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    overflow: hidden;
-    transition: all 0.2s ease;
-}
-
-.donations-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--text-primary);
-}
-
-.donations-toggle:hover {
-    background: var(--row-hover);
-}
-
-.donations-accordion.active .donations-toggle .row-arrow {
-    transform: rotate(90deg);
-}
-
-.donations-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
-    padding: 0 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.donations-accordion.active .donations-body {
-    max-height: 250px;
-    padding: 0 18px 16px 18px;
-}
-
-.nested-donation-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 14px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-}
-
-.nested-donation-link:hover {
-    color: var(--accent-blue);
-}
-
-/* Input / Copy Row Container */
-.input-row-box {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 14px 18px;
-    border-radius: 14px;
-    background: var(--row-bg);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.input-label-row {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.input-note {
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    margin-top: 4px;
-}
-
-.input-group {
-    display: flex;
-    gap: 10px;
-}
-
-.custom-input {
-    flex: 1;
-    min-width: 0;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    padding: 8px 12px;
-    color: var(--text-primary);
-    font-family: 'Fira Code', monospace;
-    font-size: 0.85rem;
-    outline: none;
-}
-
-.copy-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    color: var(--text-primary);
-    padding: 0 14px;
-    font-weight: 600;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.copy-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.copy-btn:active {
-    transform: scale(0.96);
-}
-
-/* Footer */
-.site-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 16px;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.site-footer a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.site-footer a:hover {
-    color: var(--text-primary);
-}
-
-/* Mobile Responsive */
-@media (max-width: 600px) {
-    body {
-        padding: 16px 8px;
-    }
-    .blog-sheet {
-        padding: 24px 16px;
-        border-radius: 18px;
-    }
-    .profile-title {
-        font-size: 2.2rem;
-    }
-    .lang-toggle-btn {
-        top: 12px;
-        right: 12px;
-    }
-}
-</style>
-</head>
-
+    margin: 0;    padding: 0;    box-sizing: border-box;    -webkit-font-smoothing: antialiased;}
+body {    min-height: 100vh;    overflow-x: hidden;    overflow-y: auto;    background: var(--bg-dark);    background-image: var(--bg-gradient);    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;    color: var(--text-primary);    display: flex;    justify-content: center;    padding: 40px 16px;}
+/* Subtle Ambient Background Mesh */.ambient-bg {    position: fixed;    top: 0;    left: 0;    width: 100%;    height: 100%;    z-index: 0;    pointer-events: none;    overflow: hidden;}
+.blob {    position: absolute;    border-radius: 50%;    filter: blur(120px);    opacity: 0.15;}
+.blob-1 {    top: -10%;    left: -10%;    width: 600px;    height: 600px;    background: #ffd60a;}
+.blob-2 {    bottom: -10%;    right: -10%;    width: 650px;    height: 650px;    background: #ffd60a;}
+/* Top Right PL/ENG Button */.lang-toggle-btn {    position: fixed;    top: 24px;    right: 24px;    background: rgba(30, 30, 35, 0.7);    border: 1px solid var(--sheet-border);    color: var(--text-primary);    padding: 8px 16px;    border-radius: 20px;    font-size: 0.78rem;    font-weight: 600;    cursor: pointer;    backdrop-filter: blur(20px);    -webkit-backdrop-filter: blur(20px);    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);    z-index: 100;    transition: all 0.2s ease;}
+.lang-toggle-btn:hover {    background: rgba(44, 44, 46, 0.9);    border-color: rgba(255, 255, 255, 0.2);}
+/* Unified Single Page Sheet Container */.blog-sheet {    position: relative;    z-index: 2;    width: 100%;    max-width: 680px;    height: fit-content;    background: var(--sheet-bg);    border: 1px solid var(--sheet-border);    border-radius: 24px;    padding: 40px 32px;    backdrop-filter: blur(30px) saturate(180%);    -webkit-backdrop-filter: blur(30px) saturate(180%);    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);    display: flex;    flex-direction: column;    gap: 28px;    text-align: center;}
+/* Back to main page */.back-link {    align-self: flex-start;    display: inline-flex;    align-items: center;    gap: 8px;    font-size: 0.82rem;    font-weight: 500;    color: var(--text-secondary);    text-decoration: none;    padding: 6px 12px 6px 8px;    border-radius: 12px;    transition: all 0.2s ease;}
+.back-link:hover {    color: var(--text-primary);    background: var(--row-hover);}
+.back-link span.arrow {    display: inline-block;    transform: rotate(180deg);    font-size: 0.75rem;}
+/* Header Section */.profile-header {    display: flex;    flex-direction: column;    align-items: center;    gap: 14px;}
+.header-icon {    width: 72px;    height: 72px;    object-fit: contain;    border-radius: 16px;    border: 1px solid var(--yellow-border);    background: var(--yellow-card-bg);    padding: 6px;    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);}
+.profile-title {    font-size: 2.75rem;    font-weight: 700;    letter-spacing: -0.02em;    color: var(--text-primary);}
+.profile-sub {    font-size: 0.82rem;    font-weight: 500;    color: var(--yellow-accent);    margin-top: -8px;}
+/* Description Section */.profile-description {    font-size: 0.92rem;    color: #ffffff;    font-weight: 400;    line-height: 1.6;    letter-spacing: -0.01em;    text-align: left;    display: flex;    flex-direction: column;    gap: 12px;    padding: 0 4px;}
+.profile-description code {    font-family: 'Fira Code', monospace;    font-size: 0.82rem;    color: var(--yellow-accent);    background: rgba(255, 214, 10, 0.08);    border: 1px solid var(--yellow-border);    padding: 1px 6px;    border-radius: 6px;    white-space: nowrap;}
+/* Section Headings inside the sheet */.section-block {    display: flex;    flex-direction: column;    gap: 10px;    text-align: left;}
+.section-label {    font-size: 0.78rem;    font-weight: 600;    text-transform: uppercase;    letter-spacing: 0.06em;    color: var(--text-secondary);    padding-left: 4px;}
+.rows-group {    display: flex;    flex-direction: column;    gap: 8px;}
+.row-item {    display: flex;    align-items: center;    justify-content: space-between;    padding: 14px 18px;    border-radius: 14px;    background: var(--row-bg);    border: 1px solid rgba(255, 255, 255, 0.04);    text-decoration: none;    color: var(--text-primary);    font-weight: 500;    font-size: 0.95rem;    transition: all 0.2s ease;}
+.row-left {    display: flex;    align-items: center;    gap: 14px;}
+.row-item svg {    width: 20px;    height: 20px;    fill: currentColor;    color: var(--text-primary);}
+.row-item:hover {    background: var(--row-hover);    border-color: rgba(255, 255, 255, 0.12);    transform: translateX(2px);}
+.row-arrow {    font-size: 0.85rem;    color: var(--text-secondary);    transition: transform 0.2s ease;}
+.row-item:hover .row-arrow {    transform: translateX(3px);    color: var(--text-primary);}
+/* Yellow Styling for the Discord row */.yellow-row {    background: var(--yellow-card-bg);    border: 1px solid var(--yellow-border);}
+.yellow-row:hover {    background: var(--yellow-card-hover);    border-color: rgba(255, 214, 10, 0.4);}
+/* Collapsible Donations Section */.donations-accordion {    border-radius: 14px;    background: var(--row-bg);    border: 1px solid rgba(255, 255, 255, 0.04);    overflow: hidden;    transition: all 0.2s ease;}
+.donations-toggle {    display: flex;    align-items: center;    justify-content: space-between;    padding: 14px 18px;    cursor: pointer;    font-weight: 500;    font-size: 0.95rem;    color: var(--text-primary);}
+.donations-toggle:hover {    background: var(--row-hover);}
+.donations-accordion.active .donations-toggle .row-arrow {    transform: rotate(90deg);}
+.donations-body {    max-height: 0;    overflow: hidden;    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;    padding: 0 18px;    display: flex;    flex-direction: column;    gap: 10px;}
+.donations-accordion.active .donations-body {    max-height: 250px;    padding: 0 18px 16px 18px;}
+.nested-donation-link {    display: flex;    align-items: center;    justify-content: space-between;    padding: 12px 14px;    border-radius: 10px;    background: rgba(0, 0, 0, 0.25);    border: 1px solid rgba(255, 255, 255, 0.05);    text-decoration: none;    color: var(--text-primary);    font-size: 0.9rem;    font-weight: 500;    transition: color 0.2s ease;}
+.nested-donation-link:hover {    color: var(--accent-blue);}
+/* Input / Copy Row Container */.input-row-box {    display: flex;    flex-direction: column;    gap: 8px;    padding: 14px 18px;    border-radius: 14px;    background: var(--row-bg);    border: 1px solid rgba(255, 255, 255, 0.04);}
+.input-label-row {    font-size: 0.75rem;    font-weight: 600;    text-transform: uppercase;    letter-spacing: 0.04em;    color: var(--text-secondary);    display: flex;    align-items: center;    gap: 6px;}
+.input-note {    font-size: 0.78rem;    color: var(--text-secondary);    margin-top: 4px;}
+.input-group {    display: flex;    gap: 10px;}
+.custom-input {    flex: 1;    min-width: 0;    background: rgba(0, 0, 0, 0.3);    border: 1px solid rgba(255, 255, 255, 0.08);    border-radius: 10px;    padding: 8px 12px;    color: var(--text-primary);    font-family: 'Fira Code', monospace;    font-size: 0.85rem;    outline: none;}
+.copy-btn {    background: rgba(255, 255, 255, 0.1);    border: 1px solid rgba(255, 255, 255, 0.08);    border-radius: 10px;    color: var(--text-primary);    padding: 0 14px;    font-weight: 600;    font-size: 0.8rem;    cursor: pointer;    transition: all 0.2s ease;    white-space: nowrap;}
+.copy-btn:hover {    background: rgba(255, 255, 255, 0.2);}
+.copy-btn:active {    transform: scale(0.96);}
+/* Footer */.site-footer {    border-top: 1px solid rgba(255, 255, 255, 0.06);    padding-top: 16px;    font-size: 0.8rem;    color: var(--text-secondary);    display: flex;    gap: 8px;    align-items: center;    justify-content: center;    flex-wrap: wrap;}
+.site-footer a {    color: var(--text-secondary);    text-decoration: none;    transition: color 0.2s ease;}
+.site-footer a:hover {    color: var(--text-primary);}
+/* Mobile Responsive */@media (max-width: 600px) {    body {        padding: 16px 8px;    }    .blog-sheet {        padding: 24px 16px;        border-radius: 18px;    }    .profile-title {        font-size: 2.2rem;    }    .lang-toggle-btn {        top: 12px;        right: 12px;    }}</style></head>
 <body>
-
-<!-- Ambient Blobs -->
-<div class="ambient-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-</div>
-
-<!-- Top Right PL/ENG Button -->
-<button class="lang-toggle-btn" id="langBtn">PL / ENG</button>
-
+<!-- Ambient Blobs --><div class="ambient-bg">    <div class="blob blob-1"></div>    <div class="blob blob-2"></div></div>
+<!-- Top Right PL/ENG Button --><button class="lang-toggle-btn" id="langBtn">PL / ENG</button>
 <div class="blog-sheet">
-
-    <!-- Back to main page -->
-    <a class="back-link" href="https://itzmrolas.eu/">
-        <span class="arrow">&#x276F;</span>
-        <span id="backText">Back to itzmrolas.eu</span>
-    </a>
-
-    <!-- Header -->
-    <div class="profile-header">
-        <img src="favicon.png" alt="Kuzyniakowo logo" class="header-icon">
-        <h1 class="profile-title">Kuzyniakowo</h1>
-        <div class="profile-sub" id="tagline">Minecraft Server</div>
-    </div>
-
-    <!-- Description -->
-    <div class="profile-description" id="description"></div>
-
-    <!-- Join Section -->
-    <div class="section-block">
-        <div class="section-label" id="joinLabel">Join the Server</div>
-
-        <!-- Java IP -->
-        <div class="input-row-box">
-            <div class="input-label-row">
-                <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 4v4h16V6H4zm0 6v6h16v-6H4zm2 1h2v4H6v-4zm0-6h2v2H6V7z"/></svg>
-                <span id="javaLabel">Java IP</span>
-            </div>
-            <div class="input-group">
-                <input type="text" class="custom-input" id="javaIp" value="kuzyniakowo.minecraft.party" readonly />
-                <button class="copy-btn" data-target="javaIp">Copy</button>
-            </div>
-            <div class="input-note" id="javaAltNote">If the IP doesn't work, use:</div>
-            <div class="input-group">
-                <input type="text" class="custom-input" id="javaIpAlt" value="pgsql-plaintiff.tun.ply.gg" readonly />
-                <button class="copy-btn" data-target="javaIpAlt">Copy</button>
-            </div>
-        </div>
-
-        <!-- Bedrock IP -->
-        <div class="input-row-box">
-            <div class="input-label-row">
-                <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 4v4h16V6H4zm0 6v6h16v-6H4zm2 1h2v4H6v-4zm0-6h2v2H6V7z"/></svg>
-                <span id="bedrockLabel">Bedrock IP</span>
-            </div>
-            <div class="input-note" style="margin-top:0;">IP:</div>
-            <div class="input-group">
-                <input type="text" class="custom-input" id="bedrockIp" value="pgsql-helena.tun.ply.gg" readonly />
-                <button class="copy-btn" data-target="bedrockIp">Copy</button>
-            </div>
-            <div class="input-note" id="portNote">Port:</div>
-            <div class="input-group">
-                <input type="text" class="custom-input" id="bedrockPort" value="51720" readonly />
-                <button class="copy-btn" data-target="bedrockPort">Copy</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Community Section -->
-    <div class="section-block">
-        <div class="section-label" id="communityLabel">Community</div>
-        <div class="rows-group">
-            <a class="row-item yellow-row" href="https://discord.gg/6nPEVJkJmH" target="_blank" rel="noopener noreferrer">
-                <div class="row-left">
-                    <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                    <span id="discordText">Discord Server</span>
-                </div>
-                <span class="row-arrow">&#x276F;</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- Support Section -->
-    <div class="section-block">
-        <div class="section-label" id="supportLabel">Support</div>
-
-        <div class="donations-accordion" id="donationsAccordion">
-            <div class="donations-toggle" id="donationsToggle">
-                <div class="row-left">
-                    <svg style="width:20px;height:20px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    <span id="donationsTitle">Donations & Support</span>
-                </div>
-                <span class="row-arrow">&#x276F;</span>
-            </div>
-            <div class="donations-body">
-                <a class="nested-donation-link" href="https://paypal.me/itzmrolas" target="_blank" rel="noopener noreferrer">
-                    <div class="row-left">
-                        <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .761-.65h6.398c2.906 0 5.105.748 5.86 2.083.69 1.22.427 2.923-.621 4.296-1.127 1.474-3.003 2.302-5.426 2.302H9.255a.641.641 0 0 0-.633.54l-.87 5.518-.016.103-.66 4.185a.641.641 0 0 1-.633.54h-.367zm12.37-13.43c-.443-.781-1.428-1.258-2.768-1.335h-5.01l-2.09 13.25h1.868a.641.641 0 0 0 .633-.54l.87-5.518a.77.77 0 0 1 .761-.65h1.232c3.55 0 6.136-1.393 6.942-3.87.327-1.006.185-1.921-.438-2.337z"/></svg>
-                        <span>PayPal</span>
-                    </div>
-                    <span class="row-arrow">&#x276F;</span>
-                </a>
-
-                <div style="display:flex; flex-direction:column; gap:6px;">
-                    <div class="input-label-row">
-                        <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 10h2v7H4zm6 0h2v7h-2zm6 0h2v7h-2zM2 22h20v-3H2v3zm10-20L2 6v2h20V6l-10-4z"/></svg>
-                        <span id="bankLabelText">Bank Transfer (PLN)</span>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="custom-input" id="bankAccount" value="26 1050 1445 1000 0098 5161 0189" readonly />
-                        <button class="copy-btn" data-target="bankAccount">Copy</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <a href="mailto:aleksanderswigost@gmail.com">aleksanderswigost@gmail.com</a>
-        <span>|</span>
-        <a href="https://itzmrolas.eu/privacy" target="_blank" rel="noopener noreferrer" id="privacyLink">Privacy Policy</a>
-    </footer>
-
+    <!-- Back to main page -->    <a class="back-link" href="https://itzmrolas.eu/">        <span class="arrow">&#x276F;</span>        <span id="backText">Back to itzmrolas.eu</span>    </a>
+    <!-- Header -->    <div class="profile-header">        <img src="favicon.png" alt="Kuzyniakowo logo" class="header-icon">        <h1 class="profile-title">Kuzyniakowo</h1>        <div class="profile-sub" id="tagline">Minecraft Server</div>    </div>
+    <!-- Description -->    <div class="profile-description" id="description"></div>
+    <!-- Join Section -->    <div class="section-block">        <div class="section-label" id="joinLabel">Join the Server</div>
+        <!-- Java IP -->        <div class="input-row-box">            <div class="input-label-row">                <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 4v4h16V6H4zm0 6v6h16v-6H4zm2 1h2v4H6v-4zm0-6h2v2H6V7z"/></svg>                <span id="javaLabel">Java IP</span>            </div>            <div class="input-group">                <input type="text" class="custom-input" id="javaIp" value="kuzyniakowo.minecraft.party" readonly />                <button class="copy-btn" data-target="javaIp">Copy</button>            </div>            <div class="input-note" id="javaAltNote">If the IP doesn't work, use:</div>            <div class="input-group">                <input type="text" class="custom-input" id="javaIpAlt" value="pgsql-plaintiff.tun.ply.gg" readonly />                <button class="copy-btn" data-target="javaIpAlt">Copy</button>            </div>        </div>    </div>
+    <!-- Community Section -->    <div class="section-block">        <div class="section-label" id="communityLabel">Community</div>        <div class="rows-group">            <a class="row-item yellow-row" href="https://discord.gg/6nPEVJkJmH" target="_blank" rel="noopener noreferrer">                <div class="row-left">                    <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>                    <span id="discordText">Discord Server</span>                </div>                <span class="row-arrow">&#x276F;</span>            </a>        </div>    </div>
+    <!-- Support Section -->    <div class="section-block">        <div class="section-label" id="supportLabel">Support</div>
+        <div class="donations-accordion" id="donationsAccordion">            <div class="donations-toggle" id="donationsToggle">                <div class="row-left">                    <svg style="width:20px;height:20px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>                    <span id="donationsTitle">Donations & Support</span>                </div>                <span class="row-arrow">&#x276F;</span>            </div>            <div class="donations-body">                <a class="nested-donation-link" href="https://paypal.me/itzmrolas" target="_blank" rel="noopener noreferrer">                    <div class="row-left">                        <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .761-.65h6.398c2.906 0 5.105.748 5.86 2.083.69 1.22.427 2.923-.621 4.296-1.127 1.474-3.003 2.302-5.426 2.302H9.255a.641.641 0 0 0-.633.54l-.87 5.518-.016.103-.66 4.185a.641.641 0 0 1-.633.54h-.367zm12.37-13.43c-.443-.781-1.428-1.258-2.768-1.335h-5.01l-2.09 13.25h1.868a.641.641 0 0 0 .633-.54l.87-5.518a.77.77 0 0 1 .761-.65h1.232c3.55 0 6.136-1.393 6.942-3.87.327-1.006.185-1.921-.438-2.337z"/></svg>                        <span>PayPal</span>                    </div>                    <span class="row-arrow">&#x276F;</span>                </a>
+                <div style="display:flex; flex-direction:column; gap:6px;">                    <div class="input-label-row">                        <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 10h2v7H4zm6 0h2v7h-2zm6 0h2v7h-2zM2 22h20v-3H2v3zm10-20L2 6v2h20V6l-10-4z"/></svg>                        <span id="bankLabelText">Bank Transfer (PLN)</span>                    </div>                    <div class="input-group">                        <input type="text" class="custom-input" id="bankAccount" value="26 1050 1445 1000 0098 5161 0189" readonly />                        <button class="copy-btn" data-target="bankAccount">Copy</button>                    </div>                </div>            </div>        </div>    </div>
+    <!-- Footer -->    <footer class="site-footer">        <a href="mailto:aleksanderswigost@gmail.com">aleksanderswigost@gmail.com</a>        <span>|</span>        <a href="https://itzmrolas.eu/privacy" target="_blank" rel="noopener noreferrer" id="privacyLink">Privacy Policy</a>    </footer>
 </div>
-
-<script>
-/* ===== Donations accordion ===== */
-const donationsAccordion = document.getElementById("donationsAccordion");
-document.getElementById("donationsToggle").addEventListener("click", () => {
-    donationsAccordion.classList.toggle("active");
-});
-
-/* ===== Translations (default: English) ===== */
-let currentLang = 'EN';
-
-const translations = {
-    EN: {
-        backText: 'Back to itzmrolas.eu',
-        tagline: 'Minecraft Server',
-        description: `<p>Kuzyniakowo is a Minecraft Server I started with my cousins August 16th. We have a few features like /casino, /bank or simple voicechat. The server is in adventure but you can build too! If you want to buy a plot or house just contact us in the Discord linked below.</p>
-        <p>To join just add the IP <code>kuzyniakowo.minecraft.party</code> on any Java version, but we recommend using 1.21.11 or newer.</p>`,
-        joinLabel: 'Join the Server',
-        javaLabel: 'Java IP',
-        javaAltNote: "If the IP doesn't work, use:",
-        bedrockLabel: 'Bedrock IP',
-        portNote: 'Port:',
-        communityLabel: 'Community',
-        discordText: 'Discord Server',
-        supportLabel: 'Support',
-        donationsTitle: 'Donations & Support',
-        bankLabel: 'Bank Transfer (PLN)',
-        privacy: 'Privacy Policy',
-        copy: 'Copy',
-        copied: 'Copied'
-    },
-    PL: {
-        backText: 'Wróć do itzmrolas.eu',
-        tagline: 'Serwer Minecraft',
-        description: `<p>Kuzyniakowo to serwer Minecraft, który założyłem z kuzynami 16 sierpnia. Mamy kilka funkcji, takich jak /kasyno, /bank czy simple voicechat. Serwer działa w trybie przygody, ale można też budować! Jeśli chcesz kupić działkę lub dom, napisz do nas na Discordzie podlinkowanym poniżej.</p>
-        <p>Aby dołączyć, wystarczy dodać IP <code>kuzyniakowo.minecraft.party</code> w dowolnej wersji Javy, ale polecamy 1.21.11 lub nowszą.</p>`,
-        joinLabel: 'Dołącz do serwera',
-        javaLabel: 'IP Java',
-        javaAltNote: 'Jeśli IP nie działa, użyj:',
-        bedrockLabel: 'IP Bedrock',
-        portNote: 'Port:',
-        communityLabel: 'Społeczność',
-        discordText: 'Serwer Discord',
-        supportLabel: 'Wsparcie',
-        donationsTitle: 'Wsparcie i Donacje',
-        bankLabel: 'Przelew bankowy (PLN)',
-        privacy: 'Polityka Prywatności',
-        copy: 'Kopiuj',
-        copied: 'Skopiowano'
-    }
-};
-
+<script>/* ===== Donations accordion ===== */const donationsAccordion = document.getElementById("donationsAccordion");document.getElementById("donationsToggle").addEventListener("click", () => {    donationsAccordion.classList.toggle("active");});
+/* ===== Translations (default: English) ===== */let currentLang = 'EN';
+const translations = {    EN: {        backText: 'Back to itzmrolas.eu',        tagline: 'Minecraft Server',        description: `<p>Kuzyniakowo is a Minecraft Server I started with my cousins August 16th. We have a few features like /casino, /bank or simple voicechat. The server is in adventure but you can build too! If you want to buy a plot or house just contact us in the Discord linked below.</p>        <p>To join just add the IP <code>kuzyniakowo.minecraft.party</code> on any Java version, but we recommend using 1.21.11 or newer.</p>`,        joinLabel: 'Join the Server',        javaLabel: 'Java IP',        javaAltNote: "If the IP doesn't work, use:",        communityLabel: 'Community',        discordText: 'Discord Server',        supportLabel: 'Support',        donationsTitle: 'Donations & Support',        bankLabel: 'Bank Transfer (PLN)',        privacy: 'Privacy Policy',        copy: 'Copy',        copied: 'Copied'    },    PL: {        backText: 'Wróć do itzmrolas.eu',        tagline: 'Serwer Minecraft',        description: `<p>Kuzyniakowo to serwer Minecraft, który założyłem z kuzynami 16 sierpnia. Mamy kilka funkcji, takich jak /kasyno, /bank czy simple voicechat. Serwer działa w trybie przygody, ale można też budować! Jeśli chcesz kupić działkę lub dom, napisz do nas na Discordzie podlinkowanym poniżej.</p>        <p>Aby dołączyć, wystarczy dodać IP <code>kuzyniakowo.minecraft.party</code> w dowolnej wersji Javy, ale polecamy 1.21.11 lub nowszą.</p>`,        joinLabel: 'Dołącz do serwera',        javaLabel: 'IP Java',        javaAltNote: 'Jeśli IP nie działa, użyj:',        communityLabel: 'Społeczność',        discordText: 'Serwer Discord',        supportLabel: 'Wsparcie',        donationsTitle: 'Wsparcie i Donacje',        bankLabel: 'Przelew bankowy (PLN)',        privacy: 'Polityka Prywatności',        copy: 'Kopiuj',        copied: 'Skopiowano'    }};
 const copyButtons = document.querySelectorAll(".copy-btn");
-
-function applyLanguage() {
-    const t = translations[currentLang];
-    document.documentElement.lang = currentLang === 'EN' ? 'en' : 'pl';
-
-    document.getElementById("backText").innerText = t.backText;
-    document.getElementById("tagline").innerText = t.tagline;
-    document.getElementById("description").innerHTML = t.description;
-    document.getElementById("joinLabel").innerText = t.joinLabel;
-    document.getElementById("javaLabel").innerText = t.javaLabel;
-    document.getElementById("javaAltNote").innerText = t.javaAltNote;
-    document.getElementById("bedrockLabel").innerText = t.bedrockLabel;
-    document.getElementById("portNote").innerText = t.portNote;
-    document.getElementById("communityLabel").innerText = t.communityLabel;
-    document.getElementById("discordText").innerText = t.discordText;
-    document.getElementById("supportLabel").innerText = t.supportLabel;
-    document.getElementById("donationsTitle").innerText = t.donationsTitle;
-    document.getElementById("bankLabelText").innerText = t.bankLabel;
-    document.getElementById("privacyLink").innerText = t.privacy;
-
-    copyButtons.forEach(btn => {
-        if (btn.dataset.copied !== "true") btn.innerText = t.copy;
-    });
-}
-
-document.getElementById("langBtn").addEventListener("click", () => {
-    currentLang = currentLang === 'EN' ? 'PL' : 'EN';
-    applyLanguage();
-});
-
-/* ===== Copy buttons ===== */
-copyButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const input = document.getElementById(btn.dataset.target);
-        navigator.clipboard.writeText(input.value).then(() => {
-            btn.innerText = translations[currentLang].copied;
-            btn.style.background = "#30d158";
-            btn.style.color = "#000000";
-            btn.dataset.copied = "true";
-            setTimeout(() => {
-                btn.dataset.copied = "false";
-                btn.innerText = translations[currentLang].copy;
-                btn.style.background = "rgba(255, 255, 255, 0.1)";
-                btn.style.color = "var(--text-primary)";
-            }, 2000);
-        });
-    });
-});
-
-applyLanguage();
-</script>
-
-</body>
-</html>
+function applyLanguage() {    const t = translations[currentLang];    document.documentElement.lang = currentLang === 'EN' ? 'en' : 'pl';
+    document.getElementById("backText").innerText = t.backText;    document.getElementById("tagline").innerText = t.tagline;    document.getElementById("description").innerHTML = t.description;    document.getElementById("joinLabel").innerText = t.joinLabel;    document.getElementById("javaLabel").innerText = t.javaLabel;    document.getElementById("javaAltNote").innerText = t.javaAltNote;    document.getElementById("communityLabel").innerText = t.communityLabel;    document.getElementById("discordText").innerText = t.discordText;    document.getElementById("supportLabel").innerText = t.supportLabel;    document.getElementById("donationsTitle").innerText = t.donationsTitle;    document.getElementById("bankLabelText").innerText = t.bankLabel;    document.getElementById("privacyLink").innerText = t.privacy;
+    copyButtons.forEach(btn => {        if (btn.dataset.copied !== "true") btn.innerText = t.copy;    });}
+document.getElementById("langBtn").addEventListener("click", () => {    currentLang = currentLang === 'EN' ? 'PL' : 'EN';    applyLanguage();});
+/* ===== Copy buttons ===== */copyButtons.forEach(btn => {    btn.addEventListener("click", () => {        const input = document.getElementById(btn.dataset.target);        navigator.clipboard.writeText(input.value).then(() => {            btn.innerText = translations[currentLang].copied;            btn.style.background = "#30d158";            btn.style.color = "#000000";            btn.dataset.copied = "true";            setTimeout(() => {                btn.dataset.copied = "false";                btn.innerText = translations[currentLang].copy;                btn.style.background = "rgba(255, 255, 255, 0.1)";                btn.style.color = "var(--text-primary)";            }, 2000);        });    });});
+applyLanguage();</script>
+</body></html>
