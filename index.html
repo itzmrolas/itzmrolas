@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2926001492942691"
-     crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>itzmrolas</title>
@@ -32,6 +30,12 @@
     --yellow-card-hover: rgba(60, 52, 24, 0.85);
     --yellow-border: rgba(255, 214, 10, 0.25);
     --yellow-accent: #ffd60a;
+
+    /* Dark Mode Blue Theme for Aternos */
+    --blue-card-bg: rgba(20, 35, 55, 0.65);
+    --blue-card-hover: rgba(28, 48, 75, 0.85);
+    --blue-border: rgba(10, 132, 255, 0.25);
+    --blue-accent: #0a84ff;
 }
 
 * {
@@ -312,6 +316,24 @@ body {
     margin-top: 1px;
 }
 
+/* Special Blue Styling for Aternos Project Row */
+.aternos-row {
+    background: var(--blue-card-bg);
+    border: 1px solid var(--blue-border);
+}
+
+.aternos-row:hover {
+    background: var(--blue-card-hover);
+    border-color: rgba(10, 132, 255, 0.4);
+}
+
+.aternos-date {
+    font-size: 0.72rem;
+    color: var(--blue-accent);
+    font-weight: 500;
+    margin-top: 1px;
+}
+
 /* Collapsible Donations Section inside Sheet */
 .donations-accordion {
     border-radius: 14px;
@@ -574,12 +596,23 @@ body {
     <div class="section-block">
         <div class="section-label" id="projectsLabel">Projects</div>
         <div class="rows-group">
+            <a class="row-item aternos-row" href="https://itzmrolas.eu/aternos" target="_blank" rel="noopener noreferrer">
+                <div class="row-left">
+                    <img src="aternos.png" alt="Aternos" class="project-icon">
+                    <div class="project-info">
+                        <span class="project-title">itzmrolas.aternos.me</span>
+                        <span class="aternos-date" id="aternosDate">Started November 1st</span>
+                    </div>
+                </div>
+                <span class="row-arrow">&#x276F;</span>
+            </a>
             <a class="row-item project-row" href="https://itzmrolas.eu/kuzyniakowo" target="_blank" rel="noopener noreferrer">
                 <div class="row-left">
                     <img src="icon.png" alt="Kuzyniakowo" class="project-icon">
                     <div class="project-info">
                         <span class="project-title">Kuzyniakowo</span>
                         <span class="project-date" id="kuzyniakowoDate">Started August 16th</span>
+                        <span class="project-ended" id="kuzyniakowoEnded" style="font-size: 0.72rem; color: #ff453a; font-weight: 500; margin-top: 1px;">Ended November 1st</span>
                     </div>
                 </div>
                 <span class="row-arrow">&#x276F;</span>
@@ -625,7 +658,7 @@ body {
         <!-- Discord Username Copy Row -->
         <div class="input-row-box">
             <div class="input-label-row">
-                <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028z"/></svg>
+                <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
                 <span id="discordLabelText">Discord Username</span>
             </div>
             <div class="input-group">
@@ -680,7 +713,7 @@ copyBankBtn.addEventListener("click", () => {
         copyBankBtn.style.background = "#30d158";
         copyBankBtn.style.color = "#000000";
         setTimeout(() => {
-            copyBankBtn.innerText = currentLang === 'EN' ? "Copy" : "Kopiuj";
+            copyBankBtn.innerText = currentLang === 'EN' / 'PL' ? "Copy" : "Kopiuj";
             copyBankBtn.style.background = "rgba(255, 255, 255, 0.1)";
             copyBankBtn.style.color = "var(--text-primary)";
         }, 2000);
@@ -697,7 +730,9 @@ const translations = {
         <p>Whether you found me through YouTube, TikTok, or just stumbled on my page, feel free to look around or check out what I'm currently working on.</p>`,
         channelsLabel: 'Channels & Socials',
         projectsLabel: 'Projects',
-        kuzyniakowoDate: 'Started 16th September',
+        aternosDate: 'Started November 1st',
+        kuzyniakowoDate: 'Started August 16th',
+        kuzyniakowoEnded: 'Ended November 1st',
         supportLabel: 'Support & Contact',
         donationsTitle: 'Donations & Support',
         bankLabel: 'Bank Transfer (PLN)',
@@ -710,7 +745,9 @@ const translations = {
         <p>Niezależnie od tego, czy trafiasz tu z YouTube'a, TikToka, czy po prostu z przypadku, rozgość się i obczaj, nad czym aktualnie pracuję.</p>`,
         channelsLabel: 'Kanały i Społeczność',
         projectsLabel: 'Projekty',
+        aternosDate: 'Rozpoczęto 1 Listopada',
         kuzyniakowoDate: 'Rozpoczęto 16-tego Sierpnia',
+        kuzyniakowoEnded: 'Zakończono 1 Listopada',
         supportLabel: 'Wsparcie i Kontakt',
         donationsTitle: 'Wsparcie & Dotacje',
         bankLabel: 'Przelew bankowy (PLN)',
@@ -727,7 +764,9 @@ langBtn.addEventListener("click", () => {
     document.getElementById("editableDescription").innerHTML = t.description;
     document.getElementById("channelsLabel").innerText = t.channelsLabel;
     document.getElementById("projectsLabel").innerText = t.projectsLabel;
+    document.getElementById("aternosDate").innerText = t.aternosDate;
     document.getElementById("kuzyniakowoDate").innerText = t.kuzyniakowoDate;
+    document.getElementById("kuzyniakowoEnded").innerText = t.kuzyniakowoEnded;
     document.getElementById("supportLabel").innerText = t.supportLabel;
     document.getElementById("donationsTitle").innerText = t.donationsTitle;
     document.getElementById("bankLabelText").innerText = t.bankLabel;
