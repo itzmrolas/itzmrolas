@@ -1,94 +1,248 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy</title>
+    <title>Privacy Policy — itzmrolas.eu</title>
     <meta name="description" content="Privacy Policy for itzmrolas.eu">
     <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --bg: #24221e;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --text: #334155;
+            --heading: #0f172a;
+            --muted: #64748b;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(rgba(235, 228, 209, 0.08) 1px, transparent 0),
+                radial-gradient(rgba(235, 228, 209, 0.05) 1px, transparent 0);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            padding: 2rem 1.25rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 1.5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.45rem 0.85rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+            transition: color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .back-link:hover {
+            color: var(--heading);
+            border-color: #cbd5e1;
+        }
+
+        main {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2.5rem 2.25rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--heading);
+        }
+
+        .updated {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--muted);
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-top: 2rem;
+            margin-bottom: 0.65rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        h2:first-of-type {
+            margin-top: 0.5rem;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        p {
+            margin-bottom: 0.9rem;
+            font-size: 0.975rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        ul {
+            margin: 0.5rem 0 1rem 1.25rem;
+            font-size: 0.975rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+            padding-left: 0.25rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #a8a29e;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.25rem 1rem;
+            }
+            main {
+                padding: 1.75rem 1.25rem;
+            }
+            h1 {
+                font-size: 1.65rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <a href="https://itzmrolas.eu/">❮ Back to itzmrolas.eu</a>
-    </header>
+    <div class="container">
+        <header>
+            <a class="back-link" href="https://itzmrolas.eu/">❮ Back to itzmrolas.eu</a>
+        </header>
 
-    <main>
-        <h1>Privacy Policy</h1>
-        <p><strong>Last updated: November 1, 2026</strong></p>
+        <main>
+            <h1>Privacy Policy</h1>
+            <div class="updated">Last updated: November 1, 2026</div>
 
-        <h2>1. Introduction</h2>
-        <p>
-            Welcome to itzmrolas.eu. Your privacy is important to us.
-            This website is designed to operate without collecting
-            personal information from visitors.
-        </p>
+            <h2>1. Introduction</h2>
+            <p>
+                Welcome to itzmrolas.eu. Your privacy is important to us.
+                This website is designed to operate without collecting
+                personal information from visitors.
+            </p>
 
-        <h2>2. Data Collection</h2>
-        <p>
-            We do not intentionally collect, store, or process
-            visitors' personal data through this website.
-        </p>
-        <p>We do not use:</p>
-        <ul>
-            <li>Google AdSense or other advertising services.</li>
-            <li>Google Analytics or other analytics services.</li>
-            <li>Tracking cookies.</li>
-            <li>Advertising or behavioral tracking technologies.</li>
-        </ul>
+            <h2>2. Data Collection</h2>
+            <p>
+                We do not intentionally collect, store, or process
+                visitors' personal data through this website.
+            </p>
+            <p>We do not use:</p>
+            <ul>
+                <li>Google AdSense or other advertising services.</li>
+                <li>Google Analytics or other analytics services.</li>
+                <li>Tracking cookies.</li>
+                <li>Advertising or behavioral tracking technologies.</li>
+            </ul>
 
-        <h2>3. Cookies</h2>
-        <p>
-            This website does not intentionally use tracking or
-            analytics cookies. However, certain technical cookies
-            may be used by external services if required for their operation.
-        </p>
+            <h2>3. Cookies</h2>
+            <p>
+                This website does not intentionally use tracking or
+                analytics cookies. However, certain technical cookies
+                may be used by external services if required for their operation.
+            </p>
 
-        <h2>4. Hosting and Server Logs</h2>
-        <p>
-            This website is hosted using GitHub Pages. GitHub may
-            automatically process technical information, such as
-            IP addresses and server logs, for security, maintenance,
-            and operational purposes.
-        </p>
-        <p>
-            Such processing is subject to GitHub's own privacy policy.
-        </p>
+            <h2>4. Hosting and Server Logs</h2>
+            <p>
+                This website is hosted using GitHub Pages. GitHub may
+                automatically process technical information, such as
+                IP addresses and server logs, for security, maintenance,
+                and operational purposes.
+            </p>
+            <p>
+                Such processing is subject to GitHub's own privacy policy.
+            </p>
 
-        <h2>5. External Links</h2>
-        <p>
-            Our website may contain links to external websites and
-            services, including Discord and PayPal.
-        </p>
-        <p>
-            We are not responsible for the privacy practices or
-            content of external websites. Please review their
-            respective privacy policies.
-        </p>
+            <h2>5. External Links</h2>
+            <p>
+                Our website may contain links to external websites and
+                services, including Discord and PayPal.
+            </p>
+            <p>
+                We are not responsible for the privacy practices or
+                content of external websites. Please review their
+                respective privacy policies.
+            </p>
 
-        <h2>6. Contact</h2>
-        <p>
-            If you have questions regarding this Privacy Policy,
-            you can contact us at:
-        </p>
-        <p>
-            <strong>Email:</strong>
-            <a href="mailto:aleksanderswigost@gmail.com">
-                aleksanderswigost@gmail.com
-            </a>
-        </p>
+            <h2>6. Contact</h2>
+            <p>
+                If you have questions regarding this Privacy Policy,
+                you can contact us at:
+            </p>
+            <p>
+                <strong>Email:</strong>
+                <a href="mailto:aleksanderswigost@gmail.com">aleksanderswigost@gmail.com</a>
+            </p>
 
-        <h2>7. Changes to This Policy</h2>
-        <p>
-            We may update this Privacy Policy when necessary.
-            Any changes will be published on this page.
-        </p>
-    </main>
+            <h2>7. Changes to This Policy</h2>
+            <p>
+                We may update this Privacy Policy when necessary.
+                Any changes will be published on this page.
+            </p>
+        </main>
 
-    <footer>
-        <p>© 2026 ITZMROLAS. All rights reserved.</p>
-    </footer>
+        <footer>
+            <p>© 2026 ITZMROLAS. All rights reserved.</p>
+        </footer>
+    </div>
 
 </body>
 </html>
