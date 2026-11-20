@@ -8,141 +8,116 @@
 <!-- Website Icon (Favicon) -->
 <link rel="icon" type="image/png" href="favicon.png">
 
-<!-- Apple System Fonts -->
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --bg-dark: #000000;
-    --bg-gradient: radial-gradient(circle at 50% 20%, #161618 0%, #000000 80%);
-    --text-primary: #f5f5f7;
-    --text-secondary: #86868b;
-    --sheet-bg: rgba(24, 24, 28, 0.75);
-    --sheet-border: rgba(255, 255, 255, 0.08);
-    --row-bg: rgba(255, 255, 255, 0.03);
-    --row-hover: rgba(255, 255, 255, 0.07);
-    --accent-blue: #0a84ff;
-    
-    /* Dark Mode Yellow Theme for Kuzyniakowo */
-    --yellow-card-bg: rgba(45, 40, 20, 0.65);
-    --yellow-card-hover: rgba(60, 52, 24, 0.85);
-    --yellow-border: rgba(255, 214, 10, 0.25);
-    --yellow-accent: #ffd60a;
+    --paper-bg: #ebe4d1;
+    --paper-card: #f5efe0;
+    --paper-dark: #ded4bc;
+    --ink: #171717;
+    --ink-muted: #525252;
+    --border-ink: #171717;
 
-    /* Dark Mode Blue Theme for Aternos */
-    --blue-card-bg: rgba(20, 35, 55, 0.65);
-    --blue-card-hover: rgba(28, 48, 75, 0.85);
-    --blue-border: rgba(10, 132, 255, 0.25);
-    --blue-accent: #0a84ff;
+    /* Zine-tinted Project Accents */
+    --yellow-card-bg: #f6e79c;
+    --yellow-card-hover: #f0dc78;
+    --yellow-accent: #855e00;
+
+    --blue-card-bg: #c9dff2;
+    --blue-card-hover: #b2d1ec;
+    --blue-accent: #0f4c81;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
+    border-radius: 0 !important;
 }
 
 body {
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    background: var(--bg-dark);
-    background-image: var(--bg-gradient);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
-    color: var(--text-primary);
-    user-select: none;
+    background-color: #24221e;
+    background-image:
+        radial-gradient(rgba(235, 228, 209, 0.08) 1px, transparent 0),
+        radial-gradient(rgba(235, 228, 209, 0.05) 1px, transparent 0);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    font-family: 'Courier Prime', monospace;
+    color: var(--ink);
     display: flex;
     justify-content: center;
     padding: 40px 16px;
 }
 
-/* Subtle Ambient Background Mesh */
-.ambient-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.15;
-}
-
-.blob-1 {
-    top: -10%;
-    left: -10%;
-    width: 600px;
-    height: 600px;
-    background: #0a84ff;
-}
-
-.blob-2 {
-    bottom: -10%;
-    right: -10%;
-    width: 650px;
-    height: 650px;
-    background: #ffd60a;
-}
-
-/* Unified Single Page Sheet Container */
+/* Zine Page Sheet */
 .blog-sheet {
     position: relative;
-    z-index: 2;
     width: 100%;
     max-width: 680px;
-    background: var(--sheet-bg);
-    border: 1px solid var(--sheet-border);
-    border-radius: 24px;
-    padding: 40px 32px;
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    background-color: var(--paper-bg);
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(0,0,0,0.04) 100%);
+    border: 2px solid var(--border-ink);
+    box-shadow: 8px 8px 0px #0c0c0c;
+    padding: 36px 28px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    text-align: center;
+    gap: 24px;
 }
 
-/* Header Section */
+/* Header */
 .profile-header {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 2px solid var(--border-ink);
+    padding-bottom: 14px;
 }
 
 .profile-title {
-    font-size: 2.75rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
+    font-family: 'Special Elite', 'Courier Prime', monospace;
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    background: var(--paper-card);
+    border: 2px solid var(--border-ink);
+    padding: 4px 12px;
+    box-shadow: 3px 3px 0px var(--border-ink);
 }
 
-/* Blog Hero Section (Video Left, Scaled-Up PFP Right) */
+.zine-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px dashed var(--border-ink);
+    padding: 4px 8px;
+    background: var(--paper-dark);
+}
+
+/* Hero Section (Video Left, PFP Right) */
 .blog-hero {
     display: flex;
-    gap: 20px;
+    gap: 18px;
     width: 100%;
-    align-items: center;
+    align-items: stretch;
 }
 
 .video-container {
     flex: 2;
-    border-radius: 16px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.4);
+    background: #111111;
     aspect-ratio: 16/9;
     display: flex;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 2px solid var(--border-ink);
+    box-shadow: 4px 4px 0px var(--border-ink);
 }
 
 .video-container iframe {
@@ -156,37 +131,53 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--paper-card);
+    border: 2px solid var(--border-ink);
+    box-shadow: 4px 4px 0px var(--border-ink);
+    padding: 10px;
 }
 
 .profile-pfp {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
+    width: 132px;
+    height: 132px;
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s ease;
+    border: 2px solid var(--border-ink);
 }
 
-.profile-pfp:hover {
-    transform: scale(1.03);
+/* Description / Scrapbook Bio */
+.description-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px;
+    background: var(--paper-card);
+    border: 2px solid var(--border-ink);
+    box-shadow: 4px 4px 0px var(--border-ink);
 }
 
-/* Description Section */
 .profile-description {
     font-size: 0.92rem;
-    color: #ffffff;
-    font-weight: 400;
-    line-height: 1.6;
-    letter-spacing: -0.01em;
+    color: var(--ink);
+    font-weight: 700;
+    line-height: 1.65;
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 0 4px;
+    gap: 6px;
 }
 
-/* Section Headings inside the sheet */
+.mei-square {
+    width: 72px;
+    height: 90px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid var(--border-ink);
+    background: var(--paper-dark);
+    padding: 3px;
+}
+
+/* Sections */
 .section-block {
     display: flex;
     flex-direction: column;
@@ -196,14 +187,18 @@ body {
 
 .section-label {
     font-size: 0.78rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-secondary);
-    padding-left: 4px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    background: var(--paper-dark);
+    border: 1px solid var(--border-ink);
+    display: inline-block;
+    width: fit-content;
+    padding: 3px 8px;
 }
 
-/* Unified Rows for Links & Inputs */
+/* Link Rows */
 .rows-group {
     display: flex;
     flex-direction: column;
@@ -214,63 +209,59 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 18px;
-    border-radius: 14px;
-    background: var(--row-bg);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 13px 16px;
+    background: var(--paper-card);
+    border: 2px solid var(--border-ink);
     text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 500;
+    color: var(--ink);
+    font-weight: 700;
     font-size: 0.95rem;
-    transition: all 0.2s ease;
+    transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
 }
 
 .row-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .row-item svg {
-    width: 20px;
-    height: 20px;
+    width: 19px;
+    height: 19px;
     fill: currentColor;
-    color: var(--text-primary);
+    color: var(--ink);
 }
 
 .row-item:hover {
-    background: var(--row-hover);
-    border-color: rgba(255, 255, 255, 0.12);
-    transform: translateX(2px);
+    background: #fffdf7;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--border-ink);
 }
 
 .row-arrow {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    transition: transform 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
 }
 
-.row-item:hover .row-arrow {
-    transform: translateX(3px);
-    color: var(--text-primary);
-}
-
-/* Special Yellow Styling for Kuzyniakowo Project Row */
+/* Project Rows */
 .project-row {
     background: var(--yellow-card-bg);
-    border: 1px solid var(--yellow-border);
+    border: 2px solid var(--border-ink);
 }
 
 .project-row:hover {
     background: var(--yellow-card-hover);
-    border-color: rgba(255, 214, 10, 0.4);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--border-ink);
 }
 
 .project-icon {
     width: 24px;
     height: 24px;
     object-fit: contain;
-    border-radius: 6px;
+    border: 1px solid var(--border-ink);
+    background: #ffffff;
 }
 
 .project-info {
@@ -280,57 +271,59 @@ body {
 
 .project-title {
     font-size: 0.95rem;
-    color: var(--text-primary);
-    font-weight: 600;
+    color: var(--ink);
+    font-weight: 700;
 }
 
 .project-date {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     color: var(--yellow-accent);
-    font-weight: 500;
-    margin-top: 1px;
+    font-weight: 700;
+    margin-top: 2px;
 }
 
-/* Special Blue Styling for Aternos Project Row */
 .aternos-row {
     background: var(--blue-card-bg);
-    border: 1px solid var(--blue-border);
+    border: 2px solid var(--border-ink);
 }
 
 .aternos-row:hover {
     background: var(--blue-card-hover);
-    border-color: rgba(10, 132, 255, 0.4);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--border-ink);
 }
 
 .aternos-date {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     color: var(--blue-accent);
-    font-weight: 500;
-    margin-top: 1px;
+    font-weight: 700;
+    margin-top: 2px;
 }
 
-/* Collapsible Donations Section inside Sheet */
+/* Donations Accordion */
 .donations-accordion {
-    border-radius: 14px;
-    background: var(--row-bg);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: var(--paper-card);
+    border: 2px solid var(--border-ink);
     overflow: hidden;
-    transition: all 0.2s ease;
 }
 
 .donations-toggle {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 18px;
+    padding: 13px 16px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 0.95rem;
-    color: var(--text-primary);
+    color: var(--ink);
 }
 
 .donations-toggle:hover {
-    background: var(--row-hover);
+    background: var(--paper-dark);
+}
+
+.donations-accordion.active .donations-toggle {
+    border-bottom: 2px dashed var(--border-ink);
 }
 
 .donations-accordion.active .donations-toggle .row-arrow {
@@ -340,54 +333,51 @@ body {
 .donations-body {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
-    padding: 0 18px;
+    transition: max-height 0.25s ease-in-out, padding 0.25s ease-in-out;
+    padding: 0 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .donations-accordion.active .donations-body {
-    max-height: 250px;
-    padding: 0 18px 16px 18px;
+    max-height: 260px;
+    padding: 14px 16px 16px 16px;
 }
 
 .nested-donation-link {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 14px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 11px 14px;
+    background: var(--paper-bg);
+    border: 1px solid var(--border-ink);
     text-decoration: none;
-    color: var(--text-primary);
+    color: var(--ink);
     font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    font-weight: 700;
 }
 
 .nested-donation-link:hover {
-    color: var(--accent-blue);
+    background: #fffdf7;
 }
 
-/* Input / Copy Row Container */
+/* Copy Boxes */
 .input-row-box {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 14px 18px;
-    border-radius: 14px;
-    background: var(--row-bg);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 13px 16px;
+    background: var(--paper-card);
+    border: 2px solid var(--border-ink);
 }
 
 .input-label-row {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.74rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--text-secondary);
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -395,62 +385,63 @@ body {
 
 .input-group {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .custom-input {
     flex: 1;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
+    background: #ffffff;
+    border: 2px solid var(--border-ink);
     padding: 8px 12px;
-    color: var(--text-primary);
-    font-family: 'Fira Code', monospace;
+    color: var(--ink);
+    font-family: 'Courier Prime', monospace;
     font-size: 0.85rem;
+    font-weight: 700;
     outline: none;
 }
 
 .copy-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    color: var(--text-primary);
+    background: var(--ink);
+    border: 2px solid var(--border-ink);
+    color: var(--paper-card);
     padding: 0 14px;
-    font-weight: 600;
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
     font-size: 0.8rem;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.2s ease;
     white-space: nowrap;
 }
 
 .copy-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #333333;
 }
 
 .copy-btn:active {
-    transform: scale(0.96);
+    transform: translate(1px, 1px);
 }
 
-/* Footer Section inside Sheet */
+/* Footer */
 .site-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 2px dashed var(--border-ink);
     padding-top: 16px;
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    font-weight: 700;
+    color: var(--ink-muted);
     display: flex;
     gap: 8px;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .site-footer a {
-    color: var(--text-secondary);
+    color: var(--ink);
     text-decoration: none;
-    transition: color 0.2s ease;
 }
 
 .site-footer a:hover {
-    color: var(--text-primary);
+    text-decoration: underline;
 }
 
 /* Mobile Responsive */
@@ -459,15 +450,19 @@ body {
         padding: 16px 8px;
     }
     .blog-sheet {
-        padding: 24px 16px;
-        border-radius: 18px;
+        padding: 22px 16px;
+        box-shadow: 5px 5px 0px #0c0c0c;
+    }
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
     .profile-title {
-        font-size: 2.2rem;
+        font-size: 1.7rem;
     }
     .blog-hero {
         flex-direction: column;
-        gap: 16px;
+        gap: 14px;
     }
     .video-container {
         width: 100%;
@@ -483,21 +478,15 @@ body {
 
 <body>
 
-<!-- Dark Ambient Blobs -->
-<div class="ambient-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-</div>
-
-<!-- Unified Single Page Sheet Container -->
 <div class="blog-sheet">
-    
+
     <!-- Header -->
     <div class="profile-header">
         <h1 class="profile-title">itzmrolas.eu</h1>
+        <span class="zine-tag">OFFICIAL WEBSITE</span>
     </div>
 
-    <!-- Blog Hero Section (Video Left, Scaled Up PFP Right) -->
+    <!-- Hero Section -->
     <div class="blog-hero">
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/JpvDhbqkyAY" title="Featured Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -507,18 +496,20 @@ body {
         </div>
     </div>
 
-    <!-- Natural Description Section -->
-<div class="profile-description">
-    ＩＴＺＭＲＯＬＡＳ<br>
-    editor / content creator / artist<br>
-    join the discord and follow
-</div>
+    <!-- Description Section -->
+    <div class="description-row">
+        <div class="profile-description">
+            ＩＴＺＭＲＯＬＡＳ<br>
+            editor / content creator / artist<br>
+            join the discord and follow
+        </div>
+        <img src="mei.png" alt="mei" class="mei-square">
+    </div>
 
     <!-- Official Links Section -->
     <div class="section-block">
         <div class="section-label">Channels & Socials</div>
         <div class="rows-group">
-            <!-- YouTube -->
             <a class="row-item" href="https://www.youtube.com/@itzmrolas" target="_blank" rel="noopener noreferrer">
                 <div class="row-left">
                     <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -527,7 +518,6 @@ body {
                 <span class="row-arrow">&#x276F;</span>
             </a>
 
-            <!-- TikTok -->
             <a class="row-item" href="https://www.tiktok.com/@itzmrolas" target="_blank" rel="noopener noreferrer">
                 <div class="row-left">
                     <svg viewBox="0 0 24 24"><path d="M12.525 0h3.08c.12 1.05.65 2.08 1.48 2.82 1.01.9 2.37 1.39 3.76 1.39v3.23a8.1 8.1 0 0 1-3.69-.88c-.6-.32-1.15-.74-1.63-1.23v10.15c0 1.29-.33 2.56-.96 3.68a7.88 7.88 0 0 1-2.61 2.76A7.95 7.95 0 0 1 7.8 23a7.96 7.96 0 0 1-4.04-1.07 7.92 7.92 0 0 1-2.88-2.89A7.9 7.9 0 0 1 0 14.99c0-1.42.37-2.82 1.08-4.05a7.89 7.89 0 0 1 2.91-2.89A7.96 7.96 0 0 1 8.04 7v3.28a4.67 4.67 0 0 0-2.37.64 4.66 4.66 0 0 0-1.7 1.7 4.68 4.68 0 0 0-.62 2.37c0 .84.22 1.66.64 2.38.42.72 1.01 1.3 1.73 1.71a4.7 4.7 0 0 0 2.39.63c.84 0 1.66-.22 2.38-.64a4.67 4.67 0 0 0 1.71-1.72c.42-.72.63-1.54.63-2.38V0z"/></svg>
@@ -536,7 +526,6 @@ body {
                 <span class="row-arrow">&#x276F;</span>
             </a>
 
-            <!-- Instagram -->
             <a class="row-item" href="https://www.instagram.com/itzmrolas" target="_blank" rel="noopener noreferrer">
                 <div class="row-left">
                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -545,7 +534,6 @@ body {
                 <span class="row-arrow">&#x276F;</span>
             </a>
 
-            <!-- Spotify -->
             <a class="row-item" href="https://open.spotify.com/user/31lk4chceqkrc6xcaa2kurtlyfbm" target="_blank" rel="noopener noreferrer">
                 <div class="row-left">
                     <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.899 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.48-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.301 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.18-.1.2-1.02-.36-.18-.6.36-1.021 1.02-1.2 4.2-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
@@ -554,7 +542,6 @@ body {
                 <span class="row-arrow">&#x276F;</span>
             </a>
 
-            <!-- Discord Link -->
             <a class="row-item" href="https://discord.gg/6nPEVJkJmH" target="_blank" rel="noopener noreferrer">
                 <div class="row-left">
                     <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
@@ -585,7 +572,7 @@ body {
                     <div class="project-info">
                         <span class="project-title">Kuzyniakowo</span>
                         <span class="project-date">Started August 16th</span>
-                        <span class="project-ended" style="font-size: 0.72rem; color: #ff453a; font-weight: 500; margin-top: 1px;">Ended November 1st</span>
+                        <span class="project-ended" style="font-size: 0.74rem; color: #b91c1c; font-weight: 700; margin-top: 2px;">Ended November 1st</span>
                     </div>
                 </div>
                 <span class="row-arrow">&#x276F;</span>
@@ -596,12 +583,11 @@ body {
     <!-- Support & Contact Info Section -->
     <div class="section-block">
         <div class="section-label">Support & Contact</div>
-        
-        <!-- Collapsible Donations Section -->
+
         <div class="donations-accordion" id="donationsAccordion">
             <div class="donations-toggle" id="donationsToggle">
                 <div class="row-left">
-                    <svg style="width:20px;height:20px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <svg style="width:19px;height:19px;fill:currentColor;" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     <span>Donations & Support</span>
                 </div>
                 <span class="row-arrow">&#x276F;</span>
@@ -614,7 +600,7 @@ body {
                     </div>
                     <span class="row-arrow">&#x276F;</span>
                 </a>
-                
+
                 <div style="display:flex; flex-direction:column; gap:6px;">
                     <div class="input-label-row">
                         <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M4 10h2v7H4zm6 0h2v7h-2zm6 0h2v7h-2zM2 22h20v-3H2v3zm10-20L2 6v2h20V6l-10-4z"/></svg>
@@ -628,7 +614,6 @@ body {
             </div>
         </div>
 
-        <!-- Discord Username Copy Row -->
         <div class="input-row-box">
             <div class="input-label-row">
                 <svg style="width:12px;height:12px;fill:currentColor;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
@@ -651,7 +636,6 @@ body {
 </div>
 
 <script>
-/* Donations Accordion Toggle */
 const donationsAccordion = document.getElementById("donationsAccordion");
 const donationsToggle = document.getElementById("donationsToggle");
 
@@ -659,36 +643,34 @@ donationsToggle.addEventListener("click", () => {
     donationsAccordion.classList.toggle("active");
 });
 
-/* Copy Discord Username */
 const copyBtn = document.getElementById("copyBtn");
 const discordInput = document.getElementById("discordUsername");
 
 copyBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(discordInput.value).then(() => {
         copyBtn.innerText = "Copied";
-        copyBtn.style.background = "#30d158";
-        copyBtn.style.color = "#000000";
+        copyBtn.style.background = "#15803d";
+        copyBtn.style.color = "#ffffff";
         setTimeout(() => {
             copyBtn.innerText = "Copy";
-            copyBtn.style.background = "rgba(255, 255, 255, 0.1)";
-            copyBtn.style.color = "var(--text-primary)";
+            copyBtn.style.background = "#171717";
+            copyBtn.style.color = "#f5efe0";
         }, 2000);
     });
 });
 
-/* Copy Bank Account */
 const copyBankBtn = document.getElementById("copyBankBtn");
 const bankInput = document.getElementById("bankAccount");
 
 copyBankBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(bankInput.value).then(() => {
         copyBankBtn.innerText = "Copied";
-        copyBankBtn.style.background = "#30d158";
-        copyBankBtn.style.color = "#000000";
+        copyBankBtn.style.background = "#15803d";
+        copyBankBtn.style.color = "#ffffff";
         setTimeout(() => {
             copyBankBtn.innerText = "Copy";
-            copyBankBtn.style.background = "rgba(255, 255, 255, 0.1)";
-            copyBankBtn.style.color = "var(--text-primary)";
+            copyBankBtn.style.background = "#171717";
+            copyBankBtn.style.color = "#f5efe0";
         }, 2000);
     });
 });
